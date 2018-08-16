@@ -5,6 +5,7 @@ All websocket payloads are encoded with JSON and have an option of being compres
 ## Structure
 
 | Field | Type | Description |
+|---|---|---|
 | op | integer | [opcode](opcodes.md) of the payload |
 | d | array or object | data from the event |
 | t | string? | event name, only present for opcode 2 (event) |
