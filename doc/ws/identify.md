@@ -5,7 +5,7 @@ Each websocket connection needs to be identified to tell the server that it is a
 ## Identify Fields
 
 | Field | Type | Description |
-|---|---|---|---|
+|---|---|---|
 | type | string | type of microservice |
 | extra | object? | optional extra data to be sent with certain microservice types, see table below |
 | compress | boolean | whether or not to zlib compress payloads |
