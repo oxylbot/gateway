@@ -1,0 +1,15 @@
+module.exports = {
+	OPCODES: {
+		IDENTIFY: 0,
+		HEARTBEAT: 1,
+		EVENT: 2,
+		HELLO: 3,
+		HEARTBEAT_ACKNOWLEDGEMENT: 4
+	},
+	EVENTS: {
+		EXECUTE_COMMAND: "EXECUTE_COMMAND"
+	},
+	CLOSE_CODES: {
+
+	}
+};
