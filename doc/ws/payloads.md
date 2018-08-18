@@ -37,7 +37,7 @@ After sending a heartbeat payload, the server will immediately respond with a op
 
 # Events
 
-The websocket will send an opcode 2 event payload for events. The `t` field of the payload will be the constant event name, and the `d` field will be populated with the data from the event. The `from` and `to` headings of this table describe where the event cant be sent from and where the event can be recieved.
+The websocket will send an opcode 2 event payload for events. The `t` field of the payload will be the constant event name, and the `d` field will be populated with the data from the event. The `from` and `to` headings of this table describe where the event cant be sent from and where the event can be recieved. Attempting to send an event from a microservice that cannot send that event will [close the connection](closecodes.md).
 
 | Constant Name | Name | From | To | Description |
 |---|---|---|---|---|

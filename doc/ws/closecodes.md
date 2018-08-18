@@ -12,3 +12,4 @@ If the websocket encounters an error or needs to close for any reason, it will c
 | 4003 | unknown opcode | you sent an invalid [opcode](opcodes.md) |
 | 4004 | invalid json | the payload could not be parsed properly |
 | 4005 | invalid payload | the [payload](payloads.md#sending-a-payload) was invalid |
+| 4006 | cant send | you sent an event payload that can't be sent from taht type of microservice |
