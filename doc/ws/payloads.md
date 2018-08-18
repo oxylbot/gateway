@@ -37,11 +37,11 @@ After sending a heartbeat payload, the server will immediately respond with a op
 
 # Events
 
-The websocket will send an opcode 2 event payload for events. The `t` field of the payload will be the constant event name, and the `d` field will be populated with the data from the event (below table)
+The websocket will send an opcode 2 event payload for events. The `t` field of the payload will be the constant event name, and the `d` field will be populated with the data from the event. The `from` and `to` headings of this table describe where the event cant be sent from and where the event can be recieved.
 
-| Constant Name | Name | Description |
-|---|---|---|
-| EXECUTE_COMMAND | Execute Command | execute a command on a commands service |
+| Constant Name | Name | From | To | Description |
+|---|---|---|---|---|
+| EXECUTE_COMMAND | Execute Command | sharder | commands | execute a command on a commands service |
 
 ## Event Data
 
