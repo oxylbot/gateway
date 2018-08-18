@@ -18,13 +18,14 @@ Payloads sent to the Websocket API must also follow the payload structure with a
 
 The gateway has an option to compress payloads in the `identify` payload. If enabled, the client _must_ identify if the payload is compressed and decompress the payload before attempting to parse it. Payloads sent before identifying can not be compressed.
 
-# Hello Payload
+# Hello Payload Data
 
-After connecting, the client should recieve a opcode 3 hello payload. This will have the client's heartbeat interval:
+After connecting, the client should recieve a opcode 3 hello payload. This will have the client's heartbeat interval, and a temporary API key:
 
 ```json
 {
-	"heartbeatInterval": 30000 
+	"heartbeatInterval": 30000,
+	"key": "abaefadfa9e891afbe8f8a88a8d8b888dafd6fad5fa5fdfas7d190ae"
 }
 ```
 
