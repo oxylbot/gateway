@@ -1,7 +1,7 @@
 const crypto = require("crypto");
 
-module.exports = async redis => {
+module.exports = async ws => {
 	const key = crypto.randomBytes(24).toString("hex");
 
-	redis.set(`api:keys:${key}`, "", "EX", 1800);
+	ws.locals.server.set(`api:keys:${key}`, ws.locals.id);
 };

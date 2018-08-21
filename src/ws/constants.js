@@ -1,4 +1,6 @@
 module.exports = {
+	SERVICE_TYPES: ["feeds", "dashboard", "panel", "sharder", "commands"],
+	HEARTBEAT_INTERVAL: 30000,
 	OPCODES: {
 		IDENTIFY: 0,
 		HEARTBEAT: 1,
@@ -7,7 +9,11 @@ module.exports = {
 		HEARTBEAT_ACKNOWLEDGEMENT: 4
 	},
 	EVENTS: {
-		EXECUTE_COMMAND: "EXECUTE_COMMAND"
+		EXECUTE_COMMAND: {
+			name: "EXECUTE_COMMAND",
+			from: ["sharder"],
+			to: ["commands"]
+		}
 	},
 	CLOSE_CODES: {
 		NOT_IDENTIFIED: 4000,
@@ -15,6 +21,7 @@ module.exports = {
 		ALREADY_AUTHENTICATED: 4002,
 		UNKNOWN_OPCODE: 4003,
 		INVALID_JSON: 4004,
-		INVALID_PAYLOAD: 4005
+		INVALID_PAYLOAD: 4005,
+		CANT_SEND: 4006
 	}
 };
