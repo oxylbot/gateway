@@ -20,12 +20,11 @@ The gateway has an option to compress payloads in the `identify` payload. If ena
 
 # Hello Payload Data
 
-After connecting, the client should recieve a opcode 3 hello payload. This will have the client's heartbeat interval, and a temporary API key:
+After connecting, the client should recieve a opcode 3 hello payload. This will have the client's heartbeat interval.
 
 ```json
 {
-	"heartbeatInterval": 30000,
-	"key": "abaefadfa9e891afbe8f8a88a8d8b888dafd6fad5fa5fdfas7d190ae"
+	"heartbeatInterval": 30000
 }
 ```
 

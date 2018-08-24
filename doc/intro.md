@@ -22,7 +22,7 @@ You must specify a version to use the REST API with, by appending it to the base
 
 # REST Authentication
 
-All REST API requests must have an `Authorization` header with a value you are given from identifying on the websocket first (see [identifying](ws/identify.md) with the [Websocket API](#websocket-api))
+All REST API requests must have an `Authorization` header with the secret api key (also used for [websocket identifying](ws/identify.md))
 
 # REST Endpoints
 

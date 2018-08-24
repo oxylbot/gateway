@@ -8,7 +8,6 @@ const deflate = promisify(zlib.deflate);
 
 const send = require("./send/index");
 const handler = require("./handler/index");
-const generateKey = require("./generateKey");
 
 module.exports = async (r, redis) => {
 	wss.locals = { r, redis };
