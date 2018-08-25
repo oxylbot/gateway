@@ -30,10 +30,21 @@ After connecting, the client should recieve a opcode 3 hello payload. This will 
 
 # Heartbeats
 
-The client should begin to send a opcode 1 heartbeat payload every `heartbeatInterval` milliseconds, until the connection is closed or terminated. The websocket may also request a heartbeat, so you should send a heartbeat back to the gateway if you recieve a request for one as well.
-
+The client should begin to send a opcode 1 heartbeat payload every `heartbeatInterval` milliseconds, until the connection is closed or terminated. The websocket may also request a heartbeat, so you should send a heartbeat back to the gateway if you recieve a request for one as well. This heartbeat should also contain data about the service.
 
 After sending a heartbeat payload, the server will immediately respond with a opcode 4 heartbeat acknowledgement payload (no data). This will allow a client to identify their latency to the websocket, as well as failed connections.
+
+### Example Heartbeat Data (Sending)
+```json
+{
+	"heapUsed": 102292113
+}
+```
+
+Certain services will require extra data fields to be sent:
+| Service | Field | Description | Example |
+|---|---|---|---|
+| sharder | guilds | amount of guilds the sharder is handling | 3000 |
 
 # Events
 
@@ -58,7 +69,7 @@ Sends a payload to the commands service to parse the raw command arguments and e
 | ids.author | string | id of the message's author |
 | ids.channel | string | id of the message's channel |
 | ids.guild | string | id of the channel's guild |
-| ids.shard | string | id of guild's shard |
+| ids.shard | integer | id of guild's shard |
 
 
 ```json

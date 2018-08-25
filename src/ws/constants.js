@@ -10,7 +10,6 @@ module.exports = {
 	},
 	EVENTS: {
 		EXECUTE_COMMAND: {
-			name: "EXECUTE_COMMAND",
 			from: ["sharder"],
 			to: ["commands"]
 		}
@@ -22,6 +21,7 @@ module.exports = {
 		UNKNOWN_OPCODE: 4003,
 		INVALID_JSON: 4004,
 		INVALID_PAYLOAD: 4005,
-		CANT_SEND: 4006
+		CANT_SEND: 4006,
+		NO_HEARTBEAT: 4007
 	}
 };

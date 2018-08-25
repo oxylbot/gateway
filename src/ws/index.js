@@ -9,8 +9,8 @@ const deflate = promisify(zlib.deflate);
 const send = require("./send/index");
 const handler = require("./handler/index");
 
-module.exports = async (r, redis) => {
-	wss.locals = { r, redis };
+module.exports = async r => {
+	wss.locals = { r };
 };
 
 wss.on("connection", async ws => {
@@ -40,14 +40,14 @@ wss.on("connection", async ws => {
 		}
 
 		if(message.op === undefined) {
-			ws.close(constants.CLOSE_CODES.INVALID_PAYLOAD, "invalid payload -- no op code provided");
+			ws.close(constants.CLOSE_CODES.INVALID_PAYLOAD, "invalid payload, no op code provided");
 			return;
 		} else if(![constants.OPCODES.IDENTIFY, constants.OPCODES.HEARTBEAT].includes(message.op) &&
 			!ws.locals.identified) {
-			ws.close(constants.CLOSE_CODES.NOT_IDENTIFIED, "cannot send payload -- not identified");
+			ws.close(constants.CLOSE_CODES.NOT_IDENTIFIED, "cannot send payload, not identified");
 			return;
 		} else if(message.d === undefined) {
-			ws.close(constants.CLOSE_CODES.INVALID_PAYLOAD, "invalid payload -- no d field provided");
+			ws.close(constants.CLOSE_CODES.INVALID_PAYLOAD, "invalid payload, no d field provided");
 			return;
 		}
 
@@ -71,10 +71,15 @@ wss.on("connection", async ws => {
 			}
 
 			default: {
-				ws.close(constants.CLOSE_CODES.UNKNOWN_OPCODE, "could not handle opcode sent");
+				ws.close(constants.CLOSE_CODES.UNKNOWN_OPCODE, `could not handle opcode sent: ${message.op}`);
+
 				break;
 			}
 		}
+	});
+
+	ws.on("close", (code, reason) => {
+		if(ws.locals.heartbeatChecker) clearInterval(ws.local.heartbeatChecker);
 	});
 
 	send.hello(ws);
