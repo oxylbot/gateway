@@ -37,12 +37,12 @@ Oxyl's Websocket API allows for real-time communication of events and data. All 
 The base URL for all Websocket API connections (in production). All payloads are encoded using JSON. There is an option to compress payloads in the identify payload, in order to send zlib compressed payloads which the client must handle.
 
 ```
-https://api.oxyl.website/ws
+wss://api.oxyl.website/ws
 ```
 
 # Versioning
 
-You must specify a version to use the Websocket API with, by appending it to the base URL as such: `https://api.oxyl.website/ws/v{version number}`. You cannot omit the version number, otherwise you will not be able to connect.
+You must specify a version to use the Websocket API with, by appending it to the base URL as such: `wss://api.oxyl.website/ws/v{version number}`. You cannot omit the version number, otherwise you will not be able to connect.
 
 ## Versions
 
