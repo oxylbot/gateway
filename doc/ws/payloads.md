@@ -16,7 +16,7 @@ Payloads sent to the Websocket API must also follow the payload structure with a
 
 # Recieving a Payload
 
-The gateway has an option to compress payloads in the `identify` payload. If enabled, the client _must_ identify if the payload is compressed and decompress the payload before attempting to parse it. Payloads sent before identifying can not be compressed.
+The gateway has an option to compress payloads in the `identify` payload. If enabled, the client _must_ identify if the payload is compressed and decompress the payload before attempting to parse it. Payloads sent before identifying are not compressed.
 
 # Hello Payload Data
 
@@ -33,6 +33,7 @@ After connecting, the client should recieve a opcode 3 hello payload. This will 
 The client should begin to send a opcode 1 heartbeat payload every `heartbeatInterval` milliseconds, until the connection is closed or terminated. The websocket may also request a heartbeat, so you should send a heartbeat back to the gateway if you recieve a request for one as well. This heartbeat should also contain data about the service.
 
 After sending a heartbeat payload, the server will immediately respond with a opcode 4 heartbeat acknowledgement payload (no data). This will allow a client to identify their latency to the websocket, as well as failed connections.
+
 
 ### Example Heartbeat Data (Sending)
 ```json
@@ -53,6 +54,7 @@ The websocket will send an opcode 2 event payload for events. The `t` field of t
 | Constant Name | Name | From | To | Description |
 |---|---|---|---|---|
 | EXECUTE_COMMAND | Execute Command | sharder | commands | execute a command on a commands service |
+| IDENTIFIED | Identified | none | all | after identifying successfully |
 
 ## Event Data
 
@@ -71,7 +73,6 @@ Sends a payload to the commands service to parse the raw command arguments and e
 | ids.guild | string | id of the channel's guild |
 | ids.shard | integer | id of guild's shard |
 
-
 ```json
 {
 	"command": "ban",
@@ -85,3 +86,9 @@ Sends a payload to the commands service to parse the raw command arguments and e
 	}
 }
 ```
+
+### Identified
+
+| Service Type | Field | Description | Example |
+|---|---|---|---|
+| sharder | shards | what shards the sharder should run | [0, 1, 2] |

@@ -12,6 +12,9 @@ module.exports = {
 		EXECUTE_COMMAND: {
 			from: ["sharder"],
 			to: ["commands"]
+		},
+		IDENTIFIED: {
+			from: []
 		}
 	},
 	CLOSE_CODES: {

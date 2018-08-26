@@ -8,10 +8,10 @@ const deflate = promisify(zlib.deflate);
 
 const send = require("./send/index");
 const handler = require("./handler/index");
+const sharding = require("../sharding");
 
-module.exports = async r => {
-	wss.locals = { r };
-};
+module.exports = async r => wss.locals = { r };
+module.exports.wss = wss;
 
 wss.on("connection", async ws => {
 	ws.locals = {
@@ -80,6 +80,7 @@ wss.on("connection", async ws => {
 
 	ws.on("close", (code, reason) => {
 		if(ws.locals.heartbeatChecker) clearInterval(ws.local.heartbeatChecker);
+		if(ws.locals.shards) sharding.return(ws.locals.shards);
 	});
 
 	send.hello(ws);

@@ -1,5 +1,7 @@
 const config = require("../../../config");
 const constants = require("../constants");
+const send = require("../send/index");
+const sharding = require("../../sharding");
 
 module.exports = async (ws, message) => {
 	if(ws.locals.identified) {
@@ -12,23 +14,6 @@ module.exports = async (ws, message) => {
 		return;
 	} else {
 		ws.locals.type = message.d.type;
-	}
-
-	if(message.d.type === "sharder") {
-		if(typeof message.d.extra !== "object") {
-			ws.close(constants.CLOSE_CODES.INVALID_PAYLOAD, "did not include extra field");
-			return;
-		} else if(!Array.isArrray(message.d.extra.shards) ||
-			!message.d.extra.shards.every(shard => typeof shard === "number" && shard >= 0)) {
-			ws.close(constants.CLOSE_CODES.INVALID_PAYLOAD, `invalid shards: ${message.d.extra.shards}`);
-			return;
-		} else if(typeof message.d.extra.maxShards !== "number") {
-			ws.close(constants.CLOSE_CODES.INVALID_PAYLOAD, `invalid max shards: ${message.d.extra.maxShards}`);
-			return;
-		} else {
-			ws.locals.shards = message.d.extra.shards;
-			ws.locals.maxShards = message.d.extra.maxShards;
-		}
 	}
 
 	if(message.d.compress === false) {
@@ -44,5 +29,12 @@ module.exports = async (ws, message) => {
 		ws.close(constants.CLOSE_CODES.AUTHENTICATION_FAILED, `wrong secret: ${message.d.secret}`);
 	} else {
 		ws.locals.identified = true;
+
+		if(message.d.type === "sharder") {
+			ws.locals.shards = sharding.next();
+			send.event(ws, "IDENTIFIED", {
+				shards: ws.locals.shards
+			});
+		}
 	}
 };
