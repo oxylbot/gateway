@@ -26,7 +26,7 @@ wss.on("connection", async ws => {
 	ws.send = async data => {
 		if(ws.locals.compress) {
 			const deflated = await deflate(JSON.stringify(data));
-			ws._send(deflated.toString("utf8"));
+			ws._send(deflated);
 		} else {
 			ws._send(JSON.stringify(data));
 		}
@@ -66,6 +66,12 @@ wss.on("connection", async ws => {
 
 			case constants.OPCODES.EVENT: {
 				handler.event(ws, message);
+
+				break;
+			}
+
+			case constants.OPCODES.CACHE: {
+				handler.cache(ws, message);
 
 				break;
 			}

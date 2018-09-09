@@ -6,16 +6,15 @@ module.exports = {
 		HEARTBEAT: 1,
 		EVENT: 2,
 		HELLO: 3,
-		HEARTBEAT_ACKNOWLEDGEMENT: 4
+		HEARTBEAT_ACKNOWLEDGEMENT: 4,
+		CACHE: 5
 	},
 	EVENTS: {
 		EXECUTE_COMMAND: {
 			from: ["sharder"],
 			to: ["commands"]
 		},
-		IDENTIFIED: {
-			from: []
-		}
+		IDENTIFIED: { from: [] }
 	},
 	CLOSE_CODES: {
 		NOT_IDENTIFIED: 4000,

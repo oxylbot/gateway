@@ -11,4 +11,4 @@ Each websocket payload has the `op` field with the opcode of the payload. The fo
 | 2 | event | send/recieve | dispatches an event |
 | 3 | hello | recieve | sends heartbeat interval |
 | 4 | heartbeat acknowledgement | recieve | tells the client the server recieved the heartbeat |
-| 5 | identified | recieve | sent after [identifying](identify.md), provides info about what the service needs to run |
+| 5 | cache | send | used for sending a request to cache something |

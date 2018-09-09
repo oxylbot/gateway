@@ -47,6 +47,92 @@ Certain services will require extra data fields to be sent:
 |---|---|---|---|
 | sharder | guilds | amount of guilds the sharder is handling | 3000 |
 
+# Caching
+
+The websocket will cache data to be then used by the REST portion of the API. Each payload should have the `type` field with one of the following valid cache types: `member, role, user, guild, channel, voiceState`. To see what each type must include, see below.
+
+### Member
+
+| Field | Type | Description |
+|---|---|---|
+| id | string | id of the member |
+| guildID | string | id of the guild the member is from |
+| nickname | string? | nickname of member in the guild, or null |
+| roles | string[] | ids of the roles the member has |
+| joinedAt | ISO8601 timestamp | when the user joined the guild |
+| user | user | the user that the member represents
+
+### Role
+
+| Field | Type | Description |
+|---|---|---|
+| id | string | id of the role |
+| guildID | string | id of guild the role belongs to |
+| name | string | name of the role |
+| color | integer | integer representation of hexadecimal color code |
+| position | integer | position of this role |
+| permissions | integer | permission bit set |
+
+### User
+
+| Field | Type | Description |
+|---|---|---|
+| id | string | id of the user |
+| username | string | user's username |
+| discriminator | string | 4 digit discriminator |
+| avatar | string? | user avatar hash or null |
+| bot | boolean | whether or not the user is a bot |
+
+### Guild
+
+| Field | Type | Description |
+|---|---|---|
+| id | string | id of the guild |
+| name | string | guild name |
+| icon | string? | guild icon hash or null |
+| ownerID | string | owner id of the guild |
+| region | string | voice region for the guild |
+| roles | role[] | array of role objects | 
+| memberCount | integer | number of members in the guild |
+| members? | member[] | array of members in the guild |
+| voiceStates? | voice state[] | array of voice states |
+| channels? | channel[] | array of channels in the guild |
+
+### Channel
+
+| Field | Type | Description |
+|---|---|---|
+| id | string | id of the role |
+| guildID | string | id of guild the channel belongs to |
+| type | integer | type of channel |
+| position | integer | position of the channel |
+| name | string | channel name |
+| nsfw | boolean | whether or not the channel is nsfw |
+| overwrites? | overwrite[] | overwrites of channel |
+| userLimit? | integer | user limit (for voice channels) |
+| parentID? | string | id of parent category or null |
+
+### Overwrite
+
+| Field | Type | Description |
+|---|---|---|
+| id | string | role or user id |
+| type | string | "role" or "member" |
+| allow | integer | permission bit set |
+| deny | integer | permission bit set |
+
+### Voice State
+
+| Field | Type | Description |
+|---|---|---|
+| guildID | string | id of guild the voice state belongs to |
+| channelID | string | id of the channel this voice state is for |
+| userID | string | user id corresponding to this voice state |
+| deaf | boolean | if the user is deafened (by server) |
+| mute | boolean | if the user is muted (by server) |
+| selfDeaf | boolean | if the user deafened himself |
+| selfMute | boolean | if the user muted himself |
+ 
 # Events
 
 The websocket will send an opcode 2 event payload for events. The `t` field of the payload will be the constant event name, and the `d` field will be populated with the data from the event. The `from` and `to` headings of this table describe where the event cant be sent from and where the event can be recieved. Attempting to send an event from a microservice that cannot send that event will [close the connection](closecodes.md).
@@ -92,3 +178,9 @@ Sends a payload to the commands service to parse the raw command arguments and e
 | Service Type | Field | Description | Example |
 |---|---|---|---|
 | sharder | shards | what shards the sharder should run | [0, 1, 2] |
+
+```json
+{
+	"shards": [0, 1, 2]
+}
+```

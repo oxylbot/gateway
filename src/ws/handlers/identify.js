@@ -30,11 +30,12 @@ module.exports = async (ws, message) => {
 	} else {
 		ws.locals.identified = true;
 
+		const identified = {};
 		if(message.d.type === "sharder") {
 			ws.locals.shards = sharding.next();
-			send.event(ws, "IDENTIFIED", {
-				shards: ws.locals.shards
-			});
+			identified.shards = ws.locals.shards;
 		}
+
+		send.event(ws, "IDENTIFIED", identified);
 	}
 };
