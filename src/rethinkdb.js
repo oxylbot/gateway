@@ -3,10 +3,10 @@ const rethinkdbdash = require("rethinkdbdash");
 
 const tables = [{
 	name: "members",
-	primaryKey: "id",
-	indexes: ["guildID", {
+	primaryKey: "id", // ["guildID", "userID"]
+	indexes: [{
 		name: "getByNickname",
-		rows: ["guildID", "nickname"]
+		rows: ["id", "nickname"]
 	}]
 }, {
 	name: "roles",

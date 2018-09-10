@@ -6,8 +6,7 @@ module.exports = async (ws, message) => {
 	switch(message.d.type) {
 		case "member": {
 			const member = {
-				id: message.d.id,
-				guildID: message.d.guildID,
+				id: [message.d.guildID, message.d.id],
 				nickname: message.d.nickname,
 				roles: message.d.roles,
 				joinedAt: message.d.joinedAt
