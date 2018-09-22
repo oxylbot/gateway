@@ -14,9 +14,32 @@ router.get("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
 	const r = req.app.locals.r;
 
-	const { deleted } = await r.table("guilds").get(req.params.id).delete();
-	if(deleted) res.status(204).end();
-	else res.status(404).json({ error: "Guild is not cached" });
+	const { deleted } = await r.table("guilds").get(req.params.id).delete().run();
+	if(deleted) {
+		await r.table("members")
+			.getAll(req.params.id, { index: "guildID" })
+			.delete()
+			.run();
+
+		await r.table("channels")
+			.getAll(req.params.id, { index: "guildID" })
+			.delete()
+			.run();
+
+		await r.table("voiceStates")
+			.getAll(req.params.id, { index: "guildID" })
+			.delete()
+			.run();
+
+		await r.table("roles")
+			.getAll(req.params.id, { index: "guildID" })
+			.delete()
+			.run();
+
+		res.status(204).end();
+	} else {
+		res.status(404).json({ error: "Guild is not cached" });
+	}
 });
 
 router.get("/:id/channels", async (req, res) => {
@@ -60,7 +83,6 @@ router.get("/:id/members/:memberID", async (req, res) => {
 		.run();
 
 	if(member) {
-		member.guildID = member.id[0];
 		member.id = member.id[1];
 
 		res.status(200).json(member);
@@ -113,3 +135,5 @@ router.delete("/:id/roles/:roleID", async (req, res) => {
 	if(deleted) res.status(204).end();
 	else res.status(404).json({ error: "Role is not cached" });
 });
+
+// TODO: voice states

@@ -4,7 +4,7 @@ const rethinkdbdash = require("rethinkdbdash");
 const tables = [{
 	name: "members",
 	primaryKey: "id", // ["guildID", "userID"]
-	indexes: [{
+	indexes: ["guildID", {
 		name: "getByNickname",
 		rows: ["id", "nickname"]
 	}]

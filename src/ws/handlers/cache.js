@@ -7,9 +7,10 @@ module.exports = async (ws, message) => {
 		case "member": {
 			const member = {
 				id: [message.d.guildID, message.d.id],
-				nickname: message.d.nickname,
+				nickname: message.d.nickname || null,
 				roles: message.d.roles,
-				joinedAt: message.d.joinedAt
+				joinedAt: message.d.joinedAt,
+				guildID: message.d.guildID
 			};
 
 			const { inserted } = await r.table("members")
