@@ -4,7 +4,7 @@ router.get("/:id", async (req, res) => {
 	const r = req.app.locals.r;
 
 	const guild = await r.table("guilds")
-		.getAll(req.params.roleID)
+		.get(req.params.roleID)
 		.run();
 
 	if(guild) res.status(200).json(guild);
@@ -56,7 +56,7 @@ router.get("/:id/channels/:channelID", async (req, res) => {
 	const r = req.app.locals.r;
 
 	const channel = await r.table("channels")
-		.getAll(req.params.channelID)
+		.get(req.params.channelID)
 		.run();
 
 	if(channel) res.status(200).json(channel);
@@ -117,7 +117,7 @@ router.get("/:id/roles/:roleID", async (req, res) => {
 	const r = req.app.locals.r;
 
 	const role = await r.table("roles")
-		.getAll(req.params.roleID)
+		.get(req.params.roleID)
 		.run();
 
 	if(role) res.status(200).json(role);
@@ -136,4 +136,35 @@ router.delete("/:id/roles/:roleID", async (req, res) => {
 	else res.status(404).json({ error: "Role is not cached" });
 });
 
-// TODO: voice states
+router.get("/:id/voicestates/:userID", async (req, res) => {
+	const r = req.app.locals.r;
+
+	const voiceState = await r.table("voiceStates")
+		.get([req.params.id, req.params.userID])
+		.run();
+
+	if(voiceState) res.status(200).json(voiceState);
+	else res.status(404).json({ error: "Voice state not found" });
+});
+
+router.get("/:id/channels/:channelID/members", async (req, res) => {
+	const r = req.app.locals.r;
+
+	const voiceStates = await r.table("voiceStates")
+		.getAll(req.params.channelID, { index: "channelID" })
+		.run();
+
+	res.status(200).json(voiceStates);
+});
+
+router.delete("/:id/voicestates/:userID", async (req, res) => {
+	const r = req.app.locals.r;
+
+	const { deleted } = await r.table("voiceStates")
+		.get([req.params.id, req.params.userID])
+		.delete()
+		.run();
+
+	if(deleted) res.status(204).end();
+	else res.status(404).json({ error: "Role is not cached" });
+});
