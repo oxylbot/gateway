@@ -43,6 +43,7 @@ After sending a heartbeat payload, the server will immediately respond with a op
 ```
 
 Certain services will require extra data fields to be sent:
+
 | Service | Field | Description | Example |
 |---|---|---|---|
 | sharder | guilds | amount of guilds the sharder is handling | 3000 |
