@@ -1,4 +1,4 @@
-FROM node:10.12.0-alpine
+FROM node:10.12.0-jessie
 
 ARG NODE_ENV
 
@@ -8,6 +8,6 @@ COPY . /app
 
 WORKDIR /app
 
-RUN ["npm", "install", "--production"]
- 
+RUN npm install --production
+
 CMD ["npm", "start"]

@@ -5,7 +5,8 @@ services:
 
 language: node_js
 node_js:
- - "11.0.0"
+ - "10.12.0"
+cache: npm
 
 git:
   depth: 3
@@ -17,9 +18,10 @@ install:
  - npm install
 
 script:
- - eslint .
+ - eslint . --quiet
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker pull oxyl/gateway
-  - docker push oxyl/gateway
+  - docker pull oxyl/gateway:latest
+  - docker build -t oxyl/gateway:latest .
+  - docker push oxyl/gateway:latest
