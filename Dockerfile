@@ -1,4 +1,4 @@
-FROM node:10-alpine
+FROM node:10.12.0-alpine
 
 ARG NODE_ENV
 
@@ -9,7 +9,5 @@ COPY . /app
 WORKDIR /app
 
 RUN ["npm", "install", "--production"]
-
-EXPOSE 3281 3282
  
 CMD ["npm", "start"]

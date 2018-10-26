@@ -1,6 +1,6 @@
-logs
 doc
 node_modules
-.dockerignore
 Dockerfile
-.git
+LICENSE
+README.md
+.*
