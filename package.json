@@ -25,10 +25,9 @@
   },
   "homepage": "https://github.com/oxylbot/gateway#readme",
   "dependencies": {
+    "cassandra-driver": "^3.5.0",
     "express": "^4.16.4",
-    "rethinkdbdash": "^2.3.31",
-    "superagent": "^3.8.3",
-    "ws": "^6.1.0"
+    "superagent": "^3.8.3"
   },
   "devDependencies": {
     "eslint": "^5.7.0",

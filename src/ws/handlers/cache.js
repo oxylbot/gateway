@@ -52,22 +52,6 @@ module.exports = async (ws, message) => {
 			break;
 		}
 
-		case "user": {
-			const user = {
-				id: message.d.id,
-				username: message.d.username,
-				discriminator: message.d.discriminator,
-				avatar: message.d.avatar || null,
-				bot: !!message.d.bot
-			};
-
-			await r.table("users")
-				.insert(user, { conflict: "update" })
-				.run();
-
-			break;
-		}
-
 		case "guild": {
 			const guild = {
 				id: message.d.id,

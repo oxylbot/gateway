@@ -16,13 +16,6 @@ const tables = [{
 		rows: ["guildID", "name"]
 	}]
 }, {
-	name: "users",
-	primaryKey: "id",
-	indexes: ["username", {
-		name: "tag",
-		rows: ["username", "discriminator"]
-	}]
-}, {
 	name: "guilds",
 	primaryKey: "id"
 }, {
