@@ -1,14 +1,10 @@
-const config = require("../config.json");
-const rethinkdb = require("./rethinkdb");
-
+const database = require("./database/index");
 const rest = require("./rest/index");
-const ws = require("./ws/index");
 
 async function init() {
-	const r = await rethinkdb(config.rethinkdb);
+	const db = await database();
 
-	await ws(r);
-	await rest(r);
+	await rest(db);
 }
 
 init();

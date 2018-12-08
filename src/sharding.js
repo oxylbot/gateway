@@ -1,8 +1,6 @@
-const config = require("../config");
-const superagent = require("superagent");
-
-let shardCount = 0;
-let unusedShards = [];
+const shardCount = 0;
+const sharderCount = 0;
+const unusedShards = [];
 const usedShards = [];
 
 module.exports = {
@@ -13,21 +11,11 @@ module.exports = {
 		});
 	},
 	next() {
-		const next = unusedShards.splice(0, Math.ceil(shardCount / config.sharders));
+		// TODO: get shardCount and amount of sharders automatically
+		const next = unusedShards.splice(0, Math.ceil(shardCount / sharderCount));
 		usedShards.push(...next);
 
 		return next;
 	}
 };
 
-async function getShards() {
-	const { body } = await superagent.get("https://discordapp.com/api/gateway/bot")
-		.set("Authorization", `Bot ${config.token}`);
-
-	shardCount = body.shards;
-	unusedShards = Array.from({
-		length: shardCount
-	}, (val, i) => i);
-}
-
-getShards();
