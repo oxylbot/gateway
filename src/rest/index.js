@@ -13,8 +13,8 @@ app.use(authorization());
 app.use("/discord", require("./discord/index"));
 app.use("/services", require("./services/index"));
 
-module.exports = async r => {
-	app.locals.r = r;
+module.exports = async db => {
+	app.locals.db = db;
 };
 
 app.all("*", (req, res) => {
