@@ -23,7 +23,7 @@ module.exports = async client => {
 				query: "INSERT INTO members " +
 					"(guild_id, id, nickname, roles, joined_at) " +
 					"VALUES (?, ?, ?, ?, ?);",
-				params: [member.guildID, member.id, member.nickname || "", member.roles, member.joinedAt]
+				params: [member.guildID, member.id, member.nickname, member.roles, member.joinedAt]
 			});
 		}
 

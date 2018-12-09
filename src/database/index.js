@@ -1,10 +1,15 @@
 const cassandra = require("cassandra-driver");
-const client = new cassandra.Client({});
+
+const keyspace = `oxyl_${process.env.NODE_ENV.toLowerCase()}`;
+// TODO: get ip address of db to connect to it from k8s
+const client = new cassandra.Client({
+	contactPoints: ["get from k8s"],
+	keyspace
+});
 
 module.exports = async () => {
 	await client.connect();
 
-	const keyspace = `oxyl_${process.env.NODE_ENV.toLowerCase()}`;
 	await client.execute(`CREATE KEYSPACE IF NOT EXISTS ${keyspace}` +
 		"WITH replication = {'class': 'SimpleStrategy' }");
 	await client.execute(`USE ${keyspace}`);

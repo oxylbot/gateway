@@ -20,7 +20,7 @@ module.exports = async client => {
 				query: "INSERT INTO users " +
 					"(id, username, discriminator, avatar, bot, created_at) " +
 					"VALUES (?, ?, ?, ?, ?, ?);",
-				params: [user.id, user.username, user.discriminator, user.avatar || "", user.bot, user.createdAt]
+				params: [user.id, user.username, user.discriminator, user.avatar, user.bot, user.createdAt]
 			});
 		}
 

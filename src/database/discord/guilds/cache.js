@@ -10,7 +10,7 @@ module.exports = async client => {
 		"icon text, " +
 		"owner_id text, " +
 		"region text, " +
-		"memberCount int" +
+		"member_count int" +
 	");");
 
 	const { cache: cacheChannels } = await channels(client);
@@ -27,7 +27,7 @@ module.exports = async client => {
 				query: "INSERT INTO guilds " +
 					"(id, name, icon, owner_id, region, member_count) " +
 					"VALUES (?, ?, ?, ?, ?, ?);",
-				params: [guild.id, guild.name, guild.icon || "", guild.ownerID, guild.region, guild.memberCount]
+				params: [guild.id, guild.name, guild.icon, guild.ownerID, guild.region, guild.memberCount]
 			});
 		}
 

@@ -32,7 +32,7 @@ module.exports = async client => {
 					"(id, guild_id, name, nsfw, type, position, overwrites, parent_id, user_limit) " +
 					"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);",
 				params: [channel.id, channel.guildID, channel.name, !!channel.nsfw, channel.type, channel.position,
-					channel.overwrites, channel.parentID || "", channel.user_limit || 0]
+					channel.overwrites, channel.parentID, channel.user_limit]
 			});
 		}
 
