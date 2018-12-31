@@ -1,23 +1,32 @@
-const { readFile } = require("fs/promises");
+const Sequelize = require("sequelize");
 
 module.exports = class Database {
 	constructor() {
 		this.sequelize = {};
 	}
 
-	async initDb() {
-		const PG_PASSWORD = await readFile("/etc/secrets/pg-password.txt");
-
-		const Sequelize = require("sequelize");
+	async init() {
+		const {
+			PG_PASSWORD,
+			PG_DATABASE,
+			PG_USER,
+			PG_HOST,
+			PG_PORT
+		} = process.env;
 
 		this.sequelize = {
 			main: Sequelize,
-			actions: new Sequelize("oxyl-db", "oxyl", PG_PASSWORD, {
+			actions: new Sequelize(PG_DATABASE, PG_USER, PG_PASSWORD, {
 				dialect: "postgres",
 				operatorsAliases: false,
-				logging: true
+				host: PG_HOST,
+				port: PG_PORT
 			})
 		};
+
+		this.sequelize.sync()
+			.then(() => console.log("Created Db"))
+			.catch(err => console.log("Failed to create Db :", err));
 
 		this.sequelize.actions
 			.authenticate()

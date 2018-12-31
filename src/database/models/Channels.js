@@ -15,11 +15,10 @@ module.exports = database => {
 		},
 		nsfw: {
 			type: database.main.BOOLEAN,
-			allowNull: false,
-			defaultValue: false
+			allowNull: true
 		},
 		type: {
-			type: database.main.TEXT,
+			type: database.main.INT,
 			allowNull: false
 		},
 		position: {
@@ -28,11 +27,11 @@ module.exports = database => {
 		},
 		parent_id: {
 			type: database.main.TEXT,
-			allowNull: false
+			allowNull: true
 		},
 		user_limit: {
 			type: database.main.INT,
-			allowNull: false
+			allowNull: true
 		}
 	});
 

@@ -1,4 +1,4 @@
-const roles = require("./Roles");
+const Roles = require("./Roles");
 
 module.exports = database => {
 	const Members = database.actions.define("members", {
@@ -26,10 +26,7 @@ module.exports = database => {
 		}
 	});
 
-	Members.hasMany(roles(), {
-		foreignKey: "member_id",
-		sourceKey: "roles"
-	});
+	Members.hasMany(Roles());
 
 	return Members;
 };

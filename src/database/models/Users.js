@@ -6,7 +6,7 @@ module.exports = database => {
 			allowNull: false
 		},
 		username: {
-			type: database.main.TEXT,
+			type: database.main.VARCHAR(32),
 			allowNull: false
 		},
 		discriminator: {

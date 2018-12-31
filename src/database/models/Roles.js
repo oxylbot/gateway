@@ -25,10 +25,7 @@ module.exports = database => {
 		}
 	});
 
-	Roles.belongsTo(Members, {
-		foreignKey: "member_id",
-		targetKey: "roles"
-	});
+	Roles.belongsTo(Members());
 
 	return Roles;
 };

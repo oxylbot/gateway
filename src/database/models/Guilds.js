@@ -11,7 +11,7 @@ module.exports = database => {
 		},
 		icon: {
 			type: database.main.TEXT,
-			allowNull: false
+			allowNull: true
 		},
 		owner_id: {
 			type: database.main.TEXT,
@@ -23,7 +23,6 @@ module.exports = database => {
 		},
 		member_count: {
 			type: database.main.INT,
-			defaultValue: 0,
 			allowNull: false
 		}
 	});

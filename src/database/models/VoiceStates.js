@@ -1,3 +1,6 @@
+const Users = require("./Users");
+const Guilds = require("./Guilds");
+
 module.exports = database => {
 	const VoiceStates = database.actions.define("voicestates", {
 		user_id: {
@@ -35,6 +38,9 @@ module.exports = database => {
 			allowNull: false
 		}
 	});
+
+	VoiceStates.hasOne(Users());
+	VoiceStates.hasOne(Guilds());
 
 	return VoiceStates;
 };
