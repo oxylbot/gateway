@@ -1,32 +1,32 @@
 module.exports = database => {
-	const Guilds = database.actions.define("guilds", {
+	const Users = database.actions.define("users", {
 		id: {
 			type: database.main.TEXT,
 			primaryKey: true,
 			allowNull: false
 		},
-		name: {
+		username: {
 			type: database.main.TEXT,
 			allowNull: false
 		},
-		icon: {
+		discriminator: {
 			type: database.main.TEXT,
 			allowNull: false
 		},
-		owner_id: {
+		avatar: {
 			type: database.main.TEXT,
 			allowNull: false
 		},
-		region: {
-			type: database.main.TEXT,
+		bot: {
+			type: database.main.BOOLEAN,
+			defaultValue: false,
 			allowNull: false
 		},
-		member_count: {
-			type: database.main.INT,
-			defaultValue: 0,
+		created_at: {
+			type: database.main.TIMESTAMP,
 			allowNull: false
 		}
 	});
 
-	return Guilds;
+	return Users;
 };
