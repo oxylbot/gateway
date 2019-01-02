@@ -1,7 +1,16 @@
-module.exports = async client => async (guildID, userID) => {
-	const query = "DELETE FROM voice_states WHERE guild_id = ? AND user_id = ?;";
+const Models = require("../models");
 
-	return await client.execute(query,
-		[guildID, userID],
-		{ prepare: true });
-};
+module.exports = async database => async (guild_id, user_id) => {
+	const { VoiceStateModel } = Models(database)
+
+	try {
+		return await VoiceStateModel.destroy({ 
+			where: {  
+				guild_id,
+				user_id
+			} 
+		})
+	} catch (error) {
+		console.log(error)
+	}
+}

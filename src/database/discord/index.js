@@ -1,8 +1,8 @@
-module.exports = async client => ({
-	users: await require("./users/index")(client),
-	members: await require("./members/index")(client),
-	roles: await require("./roles/index")(client),
-	guilds: await require("./guilds/index")(client),
-	channels: await require("./channels/index")(client),
-	voiceStates: await require("./voiceStates/index")(client)
+module.exports = database => ({
+	users: await require("./users/index")(database),
+	members: await require("./members/index")(database),
+	roles: await require("./roles/index")(database),
+	guilds: await require("./guilds/index")(database),
+	channels: await require("./channels/index")(database),
+	voiceStates: await require("./voiceStates/index")(database)
 });

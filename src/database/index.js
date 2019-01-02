@@ -6,8 +6,7 @@ module.exports = async () => {
 	await database.init();
 
 	return {
-		discord: await require("./discord/index")(database.sequelize),
-		models: await require("./models/index")(database.sequelize)
+		discord: await require("./discord/index")(database.sequelize)
 	};
 };
 

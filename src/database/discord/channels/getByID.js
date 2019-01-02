@@ -1,11 +1,9 @@
-const convert = require("./dbObjectConverter");
+const Models = require("../models");
 
-module.exports = async client => async id => {
-	const query = "SELECT * FROM channels WHERE id = ?;";
+module.exports = async database => async id => {
+	const { ChannelModel } = Models(database);
 
-	const { rows: [channel] } = await client.execute(query,
-		[id],
-		{ prepare: true });
+	const channels = await ChannelModel.findAll({ where: { id } });
 
-	return convert(channel);
+	return channels.length !== 0 ? channels : null;
 };

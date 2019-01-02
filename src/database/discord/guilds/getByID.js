@@ -1,9 +1,9 @@
-module.exports = async client => async id => {
-	const query = "SELECT * FROM guilds WHERE id = ?;";
+const Models = require("../models");
 
-	const { rows: [guild] } = await client.execute(query,
-		[id],
-		{ prepare: true });
+module.exports = async database => async id => {
+	const { GuildModel } = Models(database);
 
-	return guild;
-};
+	const guilds = await GuildModel.findAll({ where: { id } });
+
+	return guilds.length !== 0 ? guilds : null; 
+}

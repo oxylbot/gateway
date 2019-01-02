@@ -1,34 +1,17 @@
-module.exports = async client => {
-	await client.execute("CREATE TABLE IF NOT EXISTS users (" +
-		"id text PRIMARY KEY, " +
-		"username text, " +
-		"discriminator text, " +
-		"avatar text, " +
-		"bot boolean, " +
-		"created_at timestamp, " +
-	");");
+const Models = require("../models");
 
-	await client.execute("CREATE INDEX IF NOT EXISTS ON users (username)");
-	await client.execute("CREATE INDEX IF NOT EXISTS ON users (discriminator)");
+module.exports = async database => async users => {
+	const { UserModel } = Models(database);
+	const userObjects = [];
 
-	return async users => {
-		if(!Array.isArray(users)) users = [users];
-		const queries = [];
-
-		for(const user of users) {
-			queries.push({
-				query: "INSERT INTO users " +
-					"(id, username, discriminator, avatar, bot, created_at) " +
-					"VALUES (?, ?, ?, ?, ?, ?);",
-				params: [user.id, user.username, user.discriminator, user.avatar, user.bot, user.createdAt]
-			});
+	for (const user of users) {
+		try {
+			const userObject = await UserModel.create(user);
+			userObjects.push(userObject.get({ plain: true }));
+		} catch (error) {
+			console.log(error)
 		}
+	}
 
-		if(queries.length === 1) {
-			const [{ query, params }] = queries;
-			return await client.execute(query, params, { prepare: true });
-		} else {
-			return await client.batch(queries, { prepare: true });
-		}
-	};
-};
+	return userObjects.length !== 0 ? userObjects : null;
+}

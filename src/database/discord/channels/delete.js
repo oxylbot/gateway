@@ -1,7 +1,12 @@
-module.exports = async client => async id => {
-	const query = "DELETE FROM channels WHERE id = ?;";
+const Models = require("../models");
 
-	return await client.execute(query,
-		[id],
-		{ prepare: true });
+module.exports = async database => async id => {
+	const { ChannelModel } = Models(database);
+
+	try {
+		// I have no Idea what this returns...
+		return await ChannelModel.destroy({ where: { id } });
+	} catch (error) {
+		console.log(error);
+	}
 };

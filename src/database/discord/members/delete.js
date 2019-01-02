@@ -1,7 +1,11 @@
-module.exports = async client => async (guildID, userID) => {
-	const query = "DELETE FROM members WHERE guild_id = ? AND id = ?;";
+const Models = require("../models");
 
-	return await client.execute(query,
-		[guildID, userID],
-		{ prepare: true });
-};
+module.exports = async database => async (guild_id, id) => {
+	const { MemberModel } = Models(database);
+
+	try {
+		return await MemberModel.destroy({ where: { guild_id, id } });
+	} catch (error) {
+		console.log(error)
+	}
+}

@@ -24,8 +24,8 @@ module.exports = class Database {
 			})
 		};
 
-		this.sequelize.sync()
-			.then(() => console.log("Created Db"))
+		this.sequelize.actions.sync()
+			.then(() => console.log("Created Tables"))
 			.catch(err => console.log("Failed to create Db :", err));
 
 		this.sequelize.actions

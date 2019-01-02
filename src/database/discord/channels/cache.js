@@ -1,46 +1,17 @@
-module.exports = async client => {
-	await client.execute("CREATE TYPE IF NOT EXISTS overwrite (" +
-		"id text, " +
-		"type text, " +
-		"allow bigint, " +
-		"deny bigint" +
-	");");
+const Models = require("../models");
 
-	await client.execute("CREATE TABLE IF NOT EXISTS channels (" +
-		"id text PRIMARY KEY, " +
-		"guild_id text, " +
-		"name text, " +
-		"nsfw boolean, " +
-		"type tinyint, " +
-		"position smallint, " +
-		"overwrites set<frozen<overwrite>>," +
-		"parent_id text, " +
-		"user_limit tinyint" +
-	");");
+module.exports = async database => async channels => {
+	const { ChannelModel } = Models(database);
+	const channelObjects = [];
 
-	await client.execute("CREATE INDEX IF NOT EXISTS ON channels (guild_id)");
-	await client.execute("CREATE INDEX IF NOT EXISTS ON channels (name)");
-	await client.execute("CREATE INDEX IF NOT EXISTS ON channels (type)");
-
-	return async channels => {
-		if(!Array.isArray(channels)) channels = [channels];
-		const queries = [];
-
-		for(const channel of channels) {
-			queries.push({
-				query: "INSERT INTO channels " +
-					"(id, guild_id, name, nsfw, type, position, overwrites, parent_id, user_limit) " +
-					"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);",
-				params: [channel.id, channel.guildID, channel.name, !!channel.nsfw, channel.type, channel.position,
-					channel.overwrites, channel.parentID, channel.user_limit]
-			});
+	for(const channel of channels) {
+		try {
+			const channelObject = await ChannelModel.create(channel);
+			channelObjects.push(channelObject.get({ plain: true }));
+		} catch(error) {
+			console.log(error);
 		}
+	}
 
-		if(queries.length === 1) {
-			const [{ query, params }] = queries;
-			return await client.execute(query, params, { prepare: true });
-		} else {
-			return await client.batch(queries, { prepare: true });
-		}
-	};
+	return channelObjects.length !== 0 ? channelObjects : null;
 };
