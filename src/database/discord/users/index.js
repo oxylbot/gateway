@@ -4,4 +4,4 @@ module.exports = async database => ({
 	getByName: await require("./getByName")(database),
 	getByDiscrim: await require("./getByDiscrim")(database),
 	getByNameAndDiscrim: await require("./getByNameAndDiscrim")(database)
-})
+});

@@ -11,4 +11,4 @@ module.exports = async database => async (guildId, userId) => {
 	});
 
 	return members.length !== 0 ? members : null;
-}
+};

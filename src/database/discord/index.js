@@ -1,4 +1,4 @@
-module.exports = database => ({
+module.exports = async database => ({
 	users: await require("./users/index")(database),
 	members: await require("./members/index")(database),
 	roles: await require("./roles/index")(database),

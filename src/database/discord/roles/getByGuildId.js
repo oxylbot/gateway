@@ -5,5 +5,5 @@ module.exports = async database => async guild_id => {
 
 	const roles = await RoleModel.findAll({ where: { guild_id } });
 
-	return channels.length !== 0 ? channels : null;
-}
+	return roles.length !== 0 ? roles : null;
+};

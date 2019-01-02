@@ -4,14 +4,14 @@ module.exports = async database => async users => {
 	const { UserModel } = Models(database);
 	const userObjects = [];
 
-	for (const user of users) {
+	for(const user of users) {
 		try {
 			const userObject = await UserModel.create(user);
 			userObjects.push(userObject.get({ plain: true }));
-		} catch (error) {
-			console.log(error)
+		} catch(error) {
+			console.log(error);
 		}
 	}
 
 	return userObjects.length !== 0 ? userObjects : null;
-}
+};

@@ -3,4 +3,4 @@ module.exports = async database => ({
 	getByGuildId: await require("./getByGuildID.js")(database),
 	getById: await require("./getById.js")(database),
 	delete: await require("./delete.js")(database)
-})
+});

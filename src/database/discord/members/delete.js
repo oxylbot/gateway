@@ -3,9 +3,6 @@ const Models = require("../models");
 module.exports = async database => async (guild_id, id) => {
 	const { MemberModel } = Models(database);
 
-	try {
-		return await MemberModel.destroy({ where: { guild_id, id } });
-	} catch (error) {
-		console.log(error)
-	}
-}
+	return await MemberModel.destroy({ where: { guild_id,
+		id } });
+};

@@ -1,17 +1,17 @@
-const Models = require("../models")
+const Models = require("../models");
 
 module.exports = async database => async guilds => {
-	const { GuildModel } = Models(database)l
+	const { GuildModel } = Models(database);
 	const guildObjects = [];
 
-	for (const guild of guilds) {
+	for(const guild of guilds) {
 		try {
 			const guildObject = await GuildModel.create(guild);
 			guildObjects.push(guildObject.get({ plain: true }));
-		} catch (error) {
-			console.log(error)
+		} catch(error) {
+			console.log(error);
 		}
 	}
 
 	return guildObjects.length !== 0 ? guildObjects : null;
-}
+};
