@@ -1,6 +1,6 @@
-const Models = require("../models");
+const Models = require("../../models");
 
-module.export = async database => async voiceStates => {
+module.exports = async database => async voiceStates => {
 	const { VoiceStateModel } = Models(database);
 	const voiceStateObjects = [];
 

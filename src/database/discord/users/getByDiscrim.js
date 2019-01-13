@@ -1,6 +1,6 @@
-const Models = require("../models");
+const Models = require("../../models");
 
-module.export = async database => async discriminator => {
+module.exports = async database => async discriminator => {
 	const { UserModel } = Models(database);
 
 	const users = await UserModel.findAll({ where: { discriminator } });

@@ -1,4 +1,4 @@
-const Models = require("../models");
+const Models = require("../../models");
 
 module.exports = async database => async roles => {
 	const { RoleModel } = Models(database);

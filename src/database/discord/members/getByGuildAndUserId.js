@@ -1,4 +1,4 @@
-const Models = require("../models");
+const Models = require("../../models");
 
 module.exports = async database => async (guildId, userId) => {
 	const { MemberModel } = Models(database);
