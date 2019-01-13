@@ -18,10 +18,4 @@ install:
  - npm install
 
 script:
- - npm run lint --quiet
-
-after_success:
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker pull oxyl/gateway:latest
-  - docker build -t oxyl/gateway:latest .
-  - docker push oxyl/gateway:latest
+ - eslint . --quiet
