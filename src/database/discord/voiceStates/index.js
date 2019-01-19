@@ -1,6 +1,6 @@
-module.exports = async database => ({
-	cache: await require("./cache")(database),
-	getByGuildAndUserID: await require("./getByGuildAndUser")(database),
-	getByChannelID: await require("./getByChannelId")(database),
-	delete: await require("./delete")(database)
+module.exports = async VoiceState => ({
+	cache: await require("./cache")(VoiceState),
+	getByGuildAndUserID: await require("./getByGuildAndUser")(VoiceState),
+	getByChannelID: await require("./getByChannelId")(VoiceState),
+	delete: await require("./delete")(VoiceState)
 });

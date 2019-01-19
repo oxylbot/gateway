@@ -7,22 +7,14 @@ module.exports = class Database {
 		this.models = {};
 	}
 
-	async init() {
-		const {
-			PG_PASSWORD,
-			PG_DATABASE,
-			PG_USER,
-			PG_HOST,
-			PG_PORT
-		} = process.env;
-
+	async init({ password, user, database, host, port }) {
 		this.sequelize = {
 			main: Sequelize,
-			actions: new Sequelize(PG_DATABASE, PG_USER, PG_PASSWORD, {
+			actions: new Sequelize(database, user, password, {
 				dialect: "postgres",
 				operatorsAliases: false,
-				host: PG_HOST,
-				port: PG_PORT
+				host: host,
+				port: port
 			})
 		};
 

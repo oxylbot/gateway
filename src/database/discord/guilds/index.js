@@ -1,5 +1,5 @@
-module.exports = async database => ({
-	cache: await require("./delete.js")(database),
-	getByID: await require("./getByID.js")(database),
-	delete: await require("./delete.js")(database)
+module.exports = async Guild => ({
+	cache: await require("./delete.js")(Guild),
+	getByID: await require("./getByID.js")(Guild),
+	delete: await require("./delete.js")(Guild)
 });

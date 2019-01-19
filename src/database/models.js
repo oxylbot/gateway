@@ -199,7 +199,8 @@ module.exports = sequelize => {
 		tableName: "voice_states",
 		indexes: [{
 			name: "guild_id_and_member_id",
-			fields: ["guild_id", "member_id"]
+			fields: ["guild_id", "member_id"],
+			unique: true
 		}, {
 			name: "channel_id",
 			fields: ["channel_id"]

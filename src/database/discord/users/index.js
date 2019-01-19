@@ -1,7 +1,7 @@
-module.exports = async database => ({
-	cache: await require("./cache.js")(database),
-	getByID: await require("./getById")(database),
-	getByName: await require("./getByName")(database),
-	getByDiscrim: await require("./getByDiscrim")(database),
-	getByNameAndDiscrim: await require("./getByNameAndDiscrim")(database)
+module.exports = async User => ({
+	cache: await require("./cache.js")(User),
+	getByID: await require("./getById")(User),
+	getByName: await require("./getByName")(User),
+	getByDiscrim: await require("./getByDiscrim")(User),
+	getByNameAndDiscrim: await require("./getByNameAndDiscrim")(User)
 });
