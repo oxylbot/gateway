@@ -5,12 +5,8 @@ module.exports = async database => async roles => {
 	const roleObjects = [];
 
 	for(const role of roles) {
-		try {
-			const roleObject = await RoleModel.create(role);
-			roleObjects.push(roleObject.get({ plain: true }));
-		} catch(error) {
-			console.log(error);
-		}
+		const roleObject = await RoleModel.create(role);
+		roleObjects.push(roleObject.get({ plain: true }));
 	}
 
 	return roleObjects.length !== 0 ? roleObjects : null;

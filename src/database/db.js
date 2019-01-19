@@ -1,8 +1,10 @@
 const Sequelize = require("sequelize");
+const models = require("./models");
 
 module.exports = class Database {
 	constructor() {
 		this.sequelize = {};
+		this.models = {};
 	}
 
 	async init() {
@@ -24,13 +26,8 @@ module.exports = class Database {
 			})
 		};
 
-		this.sequelize.actions.sync()
-			.then(() => console.log("Created Tables"))
-			.catch(err => console.log("Failed to create Db :", err));
-
-		this.sequelize.actions
-			.authenticate()
-			.then(() => console.log("Connection has been established successfully"))
-			.catch(err => console.log("Unable to connect to database : ", err));
+		await this.sequelize.actions.authenticate();
+		await this.sequelize.actions.sync();
+		this.models = models(this.sequelize);
 	}
 };

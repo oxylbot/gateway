@@ -5,11 +5,7 @@ module.exports = async database => async members => {
 	const memberObjects = [];
 
 	for(const member of members) {
-		try {
-			const memberObject = await MemberModel.create(member);
-			memberObjects.push(memberObject.get({ plain: true }));
-		} catch(error) {
-			console.log(error);
-		}
+		const memberObject = await MemberModel.create(member);
+		memberObjects.push(memberObject.get({ plain: true }));
 	}
 };

@@ -1,12 +1,10 @@
 {
   "name": "oxyl-gateway",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "API Gateway for Oxyl microservices",
   "main": "src/index.js",
   "scripts": {
-    "start": "node .",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint ."
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -19,7 +17,7 @@
     "gateway",
     "api"
   ],
-  "author": "minemidnight",
+  "author": "oxylbot",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/oxylbot/gateway/issues"
@@ -32,7 +30,6 @@
     "sequelize": "^4.42.0"
   },
   "devDependencies": {
-    "dotenv": "^6.2.0",
     "eslint": "5.12.0",
     "eslint-config-recommended": "4.0.0"
   }
