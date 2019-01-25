@@ -5,31 +5,36 @@ module.exports = sequelize => {
 		id: {
 			type: Sequelize.STRING,
 			primaryKey: true,
-			allowNull: false
+			allowNull: false,
+			field: "id"
 		},
 		name: {
 			type: Sequelize.STRING(100),
-			allowNull: false
+			allowNull: false,
+			field: "name"
 		},
 		icon: {
 			type: Sequelize.STRING,
-			allowNull: true
+			allowNull: true,
+			field: "icon"
 		},
 		ownerId: {
 			type: Sequelize.STRING,
-			allowNull: false
+			allowNull: false,
+			field: "owner_id"
 		},
 		region: {
 			type: Sequelize.STRING,
-			allowNull: false
+			allowNull: false,
+			field: "region"
 		},
 		memberCount: {
 			type: Sequelize.INTEGER,
-			allowNull: false
+			allowNull: false,
+			field: "member_count"
 		}
 	}, {
 		timestamps: false,
-		underscored: true,
 		tableName: "guilds"
 	});
 
@@ -37,32 +42,37 @@ module.exports = sequelize => {
 		id: {
 			type: Sequelize.STRING,
 			primaryKey: true,
-			allowNull: false
+			allowNull: false,
+			field: "id"
 		},
 		username: {
 			type: Sequelize.STRING(32),
-			allowNull: false
+			allowNull: false,
+			field: "username"
 		},
 		discriminator: {
 			type: Sequelize.STRING(4),
-			allowNull: false
+			allowNull: false,
+			field: "discriminator"
 		},
 		avatar: {
 			type: Sequelize.STRING,
-			allowNull: false
+			allowNull: false,
+			field: "avatar"
 		},
 		bot: {
 			type: Sequelize.BOOLEAN,
 			defaultValue: false,
-			allowNull: false
+			allowNull: false,
+			field: "bot"
 		},
 		createdAt: {
 			type: Sequelize.DATE,
-			allowNull: false
+			allowNull: false,
+			field: "created_at"
 		}
 	}, {
 		timestamps: false,
-		underscored: true,
 		tableName: "users",
 		indexes: [{
 			name: "username",
@@ -77,35 +87,41 @@ module.exports = sequelize => {
 		id: {
 			primaryKey: true,
 			type: Sequelize.STRING,
-			allowNull: false
+			allowNull: false,
+			field: "id"
 		},
 		name: {
 			type: Sequelize.STRING(100),
-			allowNull: false
+			allowNull: false,
+			field: "name"
 		},
 		nsfw: {
 			type: Sequelize.BOOLEAN,
-			allowNull: true
+			allowNull: true,
+			field: "nsfw"
 		},
 		type: {
 			type: Sequelize.TINYINT,
-			allowNull: false
+			allowNull: false,
+			field: "type"
 		},
 		position: {
 			type: Sequelize.SMALLINT,
-			allowNull: false
+			allowNull: false,
+			field: "position"
 		},
 		parentId: {
 			type: Sequelize.STRING,
-			allowNull: true
+			allowNull: true,
+			field: "parent_id"
 		},
 		userLimit: {
 			type: Sequelize.TINYINT,
-			allowNull: true
+			allowNull: true,
+			field: "user_limit"
 		}
 	}, {
 		timestamps: false,
-		underscored: true,
 		tableName: "guild_channels",
 		indexes: [{
 			name: "guild_id",
@@ -117,26 +133,29 @@ module.exports = sequelize => {
 		id: {
 			type: Sequelize.STRING,
 			primaryKey: true,
-			allowNull: false
+			allowNull: false,
+			field: "id"
 		},
 		nickname: {
 			type: Sequelize.STRING(32),
-			allowNull: false
+			allowNull: false,
+			field: "nickname"
 		},
 		roles: {
 			type: Sequelize.ARRAY({
 				type: sequelize.STRING,
 				allowNull: false
 			}),
-			allowNull: false
+			allowNull: false,
+			field: "roles"
 		},
 		joinedAt: {
 			type: Sequelize.DATE,
-			allowNull: false
+			allowNull: false,
+			field: "joined_at"
 		}
 	}, {
 		timestamps: false,
-		underscored: true,
 		tableName: "members",
 		indexes: [{
 			name: "nickname",
@@ -148,23 +167,26 @@ module.exports = sequelize => {
 		id: {
 			type: Sequelize.STRING,
 			primaryKey: true,
-			allowNull: false
+			allowNull: false,
+			field: "id"
 		},
 		color: {
 			type: Sequelize.INTEGER,
-			allowNull: false
+			allowNull: false,
+			field: "color"
 		},
 		position: {
 			type: Sequelize.SMALLINT,
-			allowNull: false
+			allowNull: false,
+			field: "position"
 		},
 		permissions: {
 			type: Sequelize.BIGINT,
-			allowNull: false
+			allowNull: false,
+			field: "permissions"
 		}
 	}, {
 		timestamps: false,
-		underscored: true,
 		tableName: "roles",
 		indexes: [{
 			name: "guild_id",
@@ -176,26 +198,29 @@ module.exports = sequelize => {
 		deaf: {
 			type: Sequelize.BOOLEAN,
 			defaultValue: false,
-			allowNull: false
+			allowNull: false,
+			field: "deaf"
 		},
 		mute: {
 			type: Sequelize.BOOLEAN,
 			defaultValue: false,
-			allowNull: false
+			allowNull: false,
+			field: "mute"
 		},
 		selfDeaf: {
 			type: Sequelize.BOOLEAN,
 			defaultValue: false,
-			allowNull: false
+			allowNull: false,
+			field: "self_deaf"
 		},
 		selfMute: {
 			type: Sequelize.BOOLEAN,
 			defaultValue: false,
-			allowNull: false
+			allowNull: false,
+			field: "self_mute"
 		}
 	}, {
 		timestamps: false,
-		underscored: true,
 		tableName: "voice_states",
 		indexes: [{
 			name: "guild_id_and_member_id",
@@ -206,6 +231,8 @@ module.exports = sequelize => {
 			fields: ["channel_id"]
 		}]
 	});
+
+	VoiceState.removeAttribute("id");
 
 	Guild.hasMany(Role);
 	Guild.hasMany(Channel);
