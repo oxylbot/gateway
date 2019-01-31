@@ -7,11 +7,9 @@ app.disable("etag");
 app.disable("x-powered-by");
 app.set("env", process.env.NODE_ENV);
 
-const authorization = require("./middleware/authorization");
-app.use(authorization());
-
+app.use(express.json());
 app.use("/discord", require("./discord/index"));
-app.use("/services", require("./services/index"));
+
 
 module.exports = async db => {
 	app.locals.db = db;
