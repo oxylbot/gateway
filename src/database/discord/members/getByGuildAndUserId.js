@@ -1,14 +1,7 @@
-const Models = require("../../models");
-
-module.exports = async database => async (guildId, userId) => {
-	const { MemberModel } = Models(database);
-
-	const members = await MemberModel.find({
+module.exports = Member => async (guildId, memberId) =>
+	await Member.findOne({
 		where: {
-			guild_id: guildId,
-			user_id: userId
+			guildId,
+			id: memberId
 		}
 	});
-
-	return members.length !== 0 ? members : null;
-};

@@ -12,6 +12,6 @@ module.exports = async () => {
 	});
 
 	return {
-		discord: await require("./discord/index")(database.models)
+		discord: require("./discord/index")(database.models)
 	};
 };

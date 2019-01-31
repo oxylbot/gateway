@@ -1,9 +1,10 @@
-const Models = require("../../models");
+const { Op } = require("sequelize");
 
-module.exports = async database => async username => {
-	const { UserModel } = Models(database);
-
-	const users = await UserModel.findAll({ where: { username } });
-
-	return users.length !== 0 ? users : null;
-};
+module.exports = User => async username =>
+	await User.findAll({
+		where: {
+			username: {
+				[Op.iLike]: `${username.replace(/%/g, "\\%").replace(/_/g, "\\_").replace(/\\/g, "\\\\")}%`
+			}
+		}
+	});

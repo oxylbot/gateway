@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const models = require("./models");
 
-module.exports = class Database {
+class Database {
 	constructor() {
 		this.sequelize = {};
 		this.models = {};
@@ -22,4 +22,6 @@ module.exports = class Database {
 		await this.sequelize.actions.sync();
 		this.models = models(this.sequelize);
 	}
-};
+}
+
+module.exports = Database;

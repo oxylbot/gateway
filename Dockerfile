@@ -1,4 +1,4 @@
-FROM node:11.7.0-jessie
+FROM node:11.9.0-alpine
 
 ARG NODE_ENV
 

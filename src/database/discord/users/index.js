@@ -1,7 +1,7 @@
-module.exports = async User => ({
-	cache: await require("./cache.js")(User),
-	getByID: await require("./getById")(User),
-	getByName: await require("./getByName")(User),
-	getByDiscrim: await require("./getByDiscrim")(User),
-	getByNameAndDiscrim: await require("./getByNameAndDiscrim")(User)
+module.exports = User => ({
+	cache: require("./cache.js")(User),
+	getByID: require("./getById")(User),
+	getByName: require("./getByName")(User),
+	getByDiscrim: require("./getByDiscrim")(User),
+	getByNameAndDiscrim: require("./getByNameAndDiscrim")(User)
 });

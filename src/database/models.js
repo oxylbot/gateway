@@ -90,6 +90,11 @@ module.exports = sequelize => {
 			allowNull: false,
 			field: "id"
 		},
+		guildId: {
+			type: Sequelize.STRING,
+			allowNull: false,
+			field: "guild_id"
+		},
 		name: {
 			type: Sequelize.STRING(100),
 			allowNull: false,
@@ -136,6 +141,12 @@ module.exports = sequelize => {
 			allowNull: false,
 			field: "id"
 		},
+		guildId: {
+			type: Sequelize.STRING,
+			primaryKey: true,
+			allowNull: false,
+			field: "guild_id"
+		},
 		nickname: {
 			type: Sequelize.STRING(32),
 			allowNull: false,
@@ -170,6 +181,11 @@ module.exports = sequelize => {
 			allowNull: false,
 			field: "id"
 		},
+		guildId: {
+			type: Sequelize.STRING,
+			allowNull: false,
+			field: "guild_id"
+		},
 		color: {
 			type: Sequelize.INTEGER,
 			allowNull: false,
@@ -195,6 +211,23 @@ module.exports = sequelize => {
 	});
 
 	const VoiceState = sequelize.define("voicestates", {
+		channelId: {
+			type: Sequelize.STRING,
+			allowNull: false,
+			field: "channel_id"
+		},
+		guildId: {
+			type: Sequelize.STRING,
+			primaryKey: true,
+			allowNull: false,
+			field: "guild_id"
+		},
+		userId: {
+			type: Sequelize.STRING,
+			primaryKey: true,
+			allowNull: false,
+			field: "user_id"
+		},
 		deaf: {
 			type: Sequelize.BOOLEAN,
 			defaultValue: false,
@@ -223,33 +256,10 @@ module.exports = sequelize => {
 		timestamps: false,
 		tableName: "voice_states",
 		indexes: [{
-			name: "guild_id_and_member_id",
-			fields: ["guild_id", "member_id"],
-			unique: true
-		}, {
 			name: "channel_id",
 			fields: ["channel_id"]
 		}]
 	});
-
-	VoiceState.removeAttribute("id");
-
-	Guild.hasMany(Role);
-	Guild.hasMany(Channel);
-	Guild.hasMany(Member);
-	Guild.hasMany(VoiceState);
-
-	Channel.hasMany(VoiceState);
-	Channel.belongsTo(Guild);
-
-	VoiceState.belongsTo(Member);
-	VoiceState.belongsTo(Channel);
-	VoiceState.belongsTo(Guild);
-
-	Member.belongsTo(Guild);
-	Member.belongsTo(User);
-
-	User.hasMany(Member);
 
 	return {
 		Channel,

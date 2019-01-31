@@ -1,7 +1,2 @@
-const Models = require("../../models");
-
-module.exports = async database => async voiceStates => {
-	const { VoiceStateModel } = Models(database);
-
-	return await VoiceStateModel.bulkCreate(voiceStates);
-};
+module.exports = VoiceState => async voiceStates =>
+	await Promise.all(voiceStates.map(voiceState => VoiceState.upsert(voiceState)));
