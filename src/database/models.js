@@ -65,11 +65,6 @@ module.exports = sequelize => {
 			defaultValue: false,
 			allowNull: false,
 			field: "bot"
-		},
-		createdAt: {
-			type: Sequelize.DATE,
-			allowNull: false,
-			field: "created_at"
 		}
 	}, {
 		timestamps: false,
@@ -211,11 +206,6 @@ module.exports = sequelize => {
 	});
 
 	const VoiceState = sequelize.define("voicestates", {
-		channelId: {
-			type: Sequelize.STRING,
-			allowNull: false,
-			field: "channel_id"
-		},
 		guildId: {
 			type: Sequelize.STRING,
 			primaryKey: true,
@@ -227,6 +217,11 @@ module.exports = sequelize => {
 			primaryKey: true,
 			allowNull: false,
 			field: "user_id"
+		},
+		channelId: {
+			type: Sequelize.STRING,
+			allowNull: false,
+			field: "channel_id"
 		},
 		deaf: {
 			type: Sequelize.BOOLEAN,
