@@ -20,4 +20,5 @@ module.exports = async db => {
 app.all("*", (req, res) => {
 	res.status("404").json({ error: "Method not found" });
 });
+
 app.listen(3821);

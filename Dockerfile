@@ -1,4 +1,4 @@
-FROM node:10.15.0-jessie
+FROM node:11.9.0-alpine
 
 ARG NODE_ENV
 
@@ -10,4 +10,4 @@ WORKDIR /app
 
 RUN npm install --production
 
-CMD ["npm", "start"]
+CMD ["node", "."]
