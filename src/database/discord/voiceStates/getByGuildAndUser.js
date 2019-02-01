@@ -1,5 +1,5 @@
 module.exports = VoiceState => async (guildId, userId) =>
-	await VoiceState.destroy({
+	await VoiceState.findOne({
 		where: {
 			guildId,
 			userId

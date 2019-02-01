@@ -1,10 +1,9 @@
 {
   "name": "oxyl-gateway",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "API Gateway for Oxyl microservices",
   "main": "src/index.js",
   "scripts": {
-    "start": "node .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,18 +17,22 @@
     "gateway",
     "api"
   ],
-  "author": "minemidnight",
+  "author": "oxylbot",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/oxylbot/gateway/issues"
   },
   "homepage": "https://github.com/oxylbot/gateway#readme",
   "dependencies": {
-    "cassandra-driver": "^3.5.0",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "pg": "^7.7.1",
+    "pg-hstore": "^2.3.2",
+    "protobufjs": "^6.8.8",
+    "sequelize": "^5.0.0-beta.16",
+    "zeromq": "^5.1.0"
   },
   "devDependencies": {
-    "eslint": "^5.7.0",
-    "eslint-config-recommended": "^3.0.2"
+    "eslint": "5.12.1",
+    "eslint-config-recommended": "4.0.0"
   }
 }

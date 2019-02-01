@@ -1,5 +1,5 @@
 module.exports = Member => async (guildId, memberId) =>
-	await Member.destroy({
+	await Member.findOne({
 		where: {
 			guildId,
 			id: memberId

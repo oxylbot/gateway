@@ -1,5 +1,5 @@
-module.exports = async client => ({
-	cache: await require("./cache")(client),
-	getByGuildAndUserID: await require("./getByGuildAndUserID")(client),
-	delete: await require("./delete")(client)
+module.exports = Member => ({
+	cache: require("./cache.js")(Member),
+	delete: require("./delete.js")(Member),
+	getByGuildAndUserID: require("./getByGuildAndUserId.js")(Member)
 });
