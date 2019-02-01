@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 
-module.exports = sequelize => {
-	const Guild = sequelize.define("guild", {
+module.exports = db => {
+	const Guild = db.define("guild", {
 		id: {
 			type: Sequelize.STRING,
 			primaryKey: true,
@@ -38,7 +38,7 @@ module.exports = sequelize => {
 		tableName: "guilds"
 	});
 
-	const User = sequelize.define("user", {
+	const User = db.define("user", {
 		id: {
 			type: Sequelize.STRING,
 			primaryKey: true,
@@ -78,7 +78,7 @@ module.exports = sequelize => {
 		}]
 	});
 
-	const Channel = sequelize.define("channel", {
+	const Channel = db.define("channel", {
 		id: {
 			primaryKey: true,
 			type: Sequelize.STRING,
@@ -89,6 +89,14 @@ module.exports = sequelize => {
 			type: Sequelize.STRING,
 			allowNull: false,
 			field: "guild_id"
+		},
+		overwrites: {
+			type: Sequelize.ARRAY({
+				type: Sequelize.JSONB,
+				allowNull: false
+			}),
+			allowNull: false,
+			field: "overwrites"
 		},
 		name: {
 			type: Sequelize.STRING(100),
@@ -129,7 +137,7 @@ module.exports = sequelize => {
 		}]
 	});
 
-	const Member = sequelize.define("member", {
+	const Member = db.define("member", {
 		id: {
 			type: Sequelize.STRING,
 			primaryKey: true,
@@ -149,7 +157,7 @@ module.exports = sequelize => {
 		},
 		roles: {
 			type: Sequelize.ARRAY({
-				type: sequelize.STRING,
+				type: Sequelize.STRING,
 				allowNull: false
 			}),
 			allowNull: false,
@@ -169,7 +177,7 @@ module.exports = sequelize => {
 		}]
 	});
 
-	const Role = sequelize.define("roles", {
+	const Role = db.define("roles", {
 		id: {
 			type: Sequelize.STRING,
 			primaryKey: true,
@@ -205,7 +213,7 @@ module.exports = sequelize => {
 		}]
 	});
 
-	const VoiceState = sequelize.define("voicestates", {
+	const VoiceState = db.define("voicestates", {
 		guildId: {
 			type: Sequelize.STRING,
 			primaryKey: true,

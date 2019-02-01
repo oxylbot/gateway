@@ -1,2 +1,2 @@
-module.exports = Member => async members =>
-	await Promise.all(members.map(member => Member.upsert(member)));
+module.exports = Member => async member =>
+	await Member.upsert(member);

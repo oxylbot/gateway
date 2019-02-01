@@ -1,2 +1,2 @@
-module.exports = Channel => async channels =>
-	await Promise.all(channels.map(channel => Channel.upsert(channel)));
+module.exports = Channel => async channel =>
+	await Channel.upsert(channel);

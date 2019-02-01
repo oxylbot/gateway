@@ -1,2 +1,2 @@
-module.exports = Role => async roles =>
-	await Promise.all(roles.map(role => Role.upsert(role)));
+module.exports = Role => async role =>
+	await Role.upsert(role);

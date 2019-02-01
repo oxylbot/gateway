@@ -1,14 +1,7 @@
-const Models = require("../../models");
-
-module.exports = async database => async (guild_id, user_id) => {
-	const { VoiceStateModel } = Models(database);
-
-	const voiceStates = await VoiceStateModel.findAll({
+module.exports = VoiceState => async (guildId, userId) =>
+	await VoiceState.findOne({
 		where: {
-			guild_id,
-			user_id
+			guildId,
+			userId
 		}
 	});
-
-	return voiceStates.length !== 0 ? voiceStates : null;
-};
