@@ -37,7 +37,7 @@ message Channel {
 	required uint32 position = 4;
 	required string name = 5;
 	optional boolean nsfw = 6;
-	optional repeated Overwrite overwrites = 7;
+	repeated Overwrite overwrites = 7;
 	optional uint32 user_limit = 8;
 	optional string parent_id = 9;
 }
@@ -55,11 +55,11 @@ message Guild {
 	optional string icon = 3;
 	required string owner_id = 4;
 	required string region = 5;
-	required repeated Role roles = 6;
+	repeated Role roles = 6;
 	required uint32 member_count = 7;
-	optional repeated Member members = 8;
-	optional repeated VoiceState voice_states = 9;
-	optional repeated Channel channels = 10;
+	repeated Member members = 8;
+	repeated VoiceState voice_states = 9;
+	repeated Channel channels = 10;
 }
 
 message VoiceState {
