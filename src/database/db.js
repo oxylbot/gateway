@@ -15,8 +15,8 @@ class Database {
 			port: port
 		});
 
-		await this.sequelize.actions.authenticate();
-		await this.sequelize.actions.sync();
+		await this.sequelize.authenticate();
+		await this.sequelize.sync();
 		this.models = models(this.sequelize);
 	}
 }
