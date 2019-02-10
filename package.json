@@ -1,6 +1,6 @@
 {
   "name": "oxyl-gateway",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "API Gateway for Oxyl microservices",
   "main": "src/index.js",
   "scripts": {
