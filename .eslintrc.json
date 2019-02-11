@@ -87,10 +87,8 @@
 				"switch": { "after": false }
 			}
 		}],
-		"max-len": ["error", 120, 2],
 		"max-nested-callbacks": ["error", { "max": 3 }],
 		"max-statements-per-line": ["error", { "max": 2 }],
-		"new-cap": "error",
 		"no-array-constructor": "error",
 		"no-lonely-if": "error",
 		"nonblock-statement-body-position": "error",
@@ -136,6 +134,6 @@
 		"rest-spread-spacing": "error",
 		"template-curly-spacing": "error",
 		"yield-star-spacing": "error",
-		"new-cap": "off"
+		"new-cap": "error"
 	}
 }
