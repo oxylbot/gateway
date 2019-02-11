@@ -2,8 +2,7 @@ const handler = require("./request-handler");
 const zmq = require("zeromq");
 
 class CacheSocket {
-	constructor(address) {
-		this.address = address;
+	constructor() {
 		this.socket = zmq.socket("pull");
 		this.socket.on("message", this.message.bind(this));
 
@@ -15,7 +14,7 @@ class CacheSocket {
 		this.database = database;
 		this.proto = proto;
 
-		this.socket.connect(this.address);
+		this.socket.connect(`tcp://gateway-cache-zmq-proxy:${process.env.GATEWAY_CACHE_ZMQ_PROXY_SERVICE_PORT_PUSH}`);
 	}
 
 	close() {
