@@ -7,8 +7,8 @@ module.exports = async () => {
 		password: process.env.PG_PASSWORD,
 		database: process.env.PG_DATABASE,
 		user: process.env.PG_USER,
-		host: process.env.PG_HOST,
-		port: process.env.PG_PORT
+		host: "postgres",
+		port: process.env.POSTGRES_SERVICE_PORT
 	});
 
 	return {
