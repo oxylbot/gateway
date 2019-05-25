@@ -3,7 +3,7 @@ const router = module.exports = new (require("express").Router)();
 router.get("/", async (req, res) => {
 	const db = req.app.locals.db;
 
-	const userCount = await db.models.UserModel.count();
+	const userCount = await db.models.User.count();
 
 	res.status(200).json({ users: userCount });
 });
