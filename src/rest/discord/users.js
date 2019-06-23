@@ -24,6 +24,7 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
 	const db = req.app.locals.db;
+	console.log(db);
 
 	const user = await db.discord.users.getById(req.params.id);
 
