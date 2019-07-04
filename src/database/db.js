@@ -16,8 +16,9 @@ class Database {
 		});
 
 		await this.sequelize.authenticate();
-		await this.sequelize.sync();
 		this.models = models(this.sequelize);
+
+		await this.sequelize.sync();
 	}
 }
 
