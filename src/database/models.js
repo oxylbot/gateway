@@ -109,7 +109,7 @@ module.exports = db => {
 			field: "nsfw"
 		},
 		type: {
-			type: Sequelize.TINYINT,
+			type: Sequelize.SMALLINT,
 			allowNull: false,
 			field: "type"
 		},
@@ -124,7 +124,7 @@ module.exports = db => {
 			field: "parent_id"
 		},
 		userLimit: {
-			type: Sequelize.TINYINT,
+			type: Sequelize.SMALLINT,
 			allowNull: true,
 			field: "user_limit"
 		}
