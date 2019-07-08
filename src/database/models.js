@@ -70,10 +70,8 @@ module.exports = db => {
 		timestamps: false,
 		tableName: "users",
 		indexes: [{
-			name: "username",
 			fields: ["username"]
 		}, {
-			name: "discriminator",
 			fields: ["discriminator"]
 		}]
 	});
@@ -132,7 +130,6 @@ module.exports = db => {
 		timestamps: false,
 		tableName: "guild_channels",
 		indexes: [{
-			name: "guild_id",
 			fields: ["guild_id"]
 		}]
 	});
@@ -172,7 +169,6 @@ module.exports = db => {
 		timestamps: false,
 		tableName: "members",
 		indexes: [{
-			name: "nickname",
 			fields: ["nickname"]
 		}]
 	});
@@ -208,7 +204,6 @@ module.exports = db => {
 		timestamps: false,
 		tableName: "roles",
 		indexes: [{
-			name: "guild_id",
 			fields: ["guild_id"]
 		}]
 	});
@@ -259,7 +254,6 @@ module.exports = db => {
 		timestamps: false,
 		tableName: "voice_states",
 		indexes: [{
-			name: "channel_id",
 			fields: ["channel_id"]
 		}]
 	});
