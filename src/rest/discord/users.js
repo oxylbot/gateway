@@ -24,9 +24,10 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
 	const db = req.app.locals.db;
-	console.log(db);
+	console.log("getting user by id", req.params.id);
 
 	const user = await db.discord.users.getById(req.params.id);
+	console.log("found user", user);
 
 	if(user) res.status(200).json(user);
 	else res.status(404).json({ error: "User not found" });
