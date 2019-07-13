@@ -1,4 +1,5 @@
 module.exports = async (database, type, data) => {
+	console.log("Looking to cache a", type, data);
 	switch(type) {
 		case "Member": {
 			await module.exports(database, "User", data.user);
@@ -26,6 +27,7 @@ module.exports = async (database, type, data) => {
 		}
 
 		case "User": {
+			console.log("Caching user!");
 			await database.users.cache({
 				id: data.id,
 				username: data.username,
@@ -88,6 +90,12 @@ module.exports = async (database, type, data) => {
 				selfDeaf: data.selfDeaf,
 				selfMute: data.selfMute
 			});
+
+			break;
+		}
+
+		default: {
+			console.log("Failed to cache", type, data, "because it matched no types");
 
 			break;
 		}
