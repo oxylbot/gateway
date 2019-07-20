@@ -1,9 +1,8 @@
 module.exports = async (database, type, data) => {
-	console.log("Looking to cache a", type, data);
 	switch(type) {
 		case "Member": {
 			await module.exports(database, "User", data.user);
-			await database.members.cache({
+			await database.models.members.cache({
 				id: data.user.id,
 				guildId: data.guildId,
 				nickname: data.nickname,
@@ -15,7 +14,7 @@ module.exports = async (database, type, data) => {
 		}
 
 		case "Role": {
-			await database.roles.cache({
+			await database.models.roles.cache({
 				id: data.id,
 				guildId: data.guildId,
 				color: data.color,
@@ -28,7 +27,7 @@ module.exports = async (database, type, data) => {
 
 		case "User": {
 			console.log("Caching user!");
-			await database.users.cache({
+			await database.models.users.cache({
 				id: data.id,
 				username: data.username,
 				discriminator: data.discriminator,
@@ -40,7 +39,7 @@ module.exports = async (database, type, data) => {
 		}
 
 		case "Channel": {
-			await database.channels.cache({
+			await database.models.channels.cache({
 				id: data.id,
 				guildId: data.guildId,
 				name: data.name,
@@ -61,7 +60,7 @@ module.exports = async (database, type, data) => {
 		}
 
 		case "Guild": {
-			await database.guilds.cache({
+			await database.models.guilds.cache({
 				id: data.id,
 				name: data.name,
 				icon: data.icon,
@@ -81,7 +80,7 @@ module.exports = async (database, type, data) => {
 		}
 
 		case "VoiceState": {
-			await database.voiceStates.cache({
+			await database.models.voiceStates.cache({
 				guildId: data.guildId,
 				userId: data.userId,
 				channelId: data.channelId,
