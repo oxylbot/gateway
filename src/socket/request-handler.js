@@ -93,7 +93,7 @@ module.exports = async (db, type, data) => {
 		}
 
 		default: {
-			console.log("Failed to cache", type, data, "because it matched no types");
+			console.warn("Failed to cache", type, data, "because it matched no types");
 
 			break;
 		}

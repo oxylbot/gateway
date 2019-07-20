@@ -27,7 +27,6 @@ class CacheSocket {
 
 		const requestType = this.proto.lookup(decoded.type);
 
-		console.log("Recieved a cache request for a", decoded.type);
 		await handler(this.database, decoded.type, requestType.decode(decoded.data));
 	}
 }
