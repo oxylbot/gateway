@@ -20,9 +20,15 @@ router.delete("/:id", async (req, res) => {
 router.get("/:id/channels", async (req, res) => {
 	const db = req.app.locals.db;
 
-	const channels = await db.discord.channels.getByGuildId(req.params.id);
+	if(req.query.name) {
+		const channels = await db.discord.channels.getByGuildIdAndName(req.params.id, req.query.name);
 
-	res.status(200).json(channels);
+		res.status(200).json(channels);
+	} else {
+		const channels = await db.discord.channels.getByGuildId(req.params.id);
+
+		res.status(200).json(channels);
+	}
 });
 
 router.get("/:id/channels/:channelId", async (req, res) => {
@@ -31,7 +37,7 @@ router.get("/:id/channels/:channelId", async (req, res) => {
 	const channel = await db.discord.channels.getById(req.params.channelId);
 
 	if(channel) res.status(200).json(channel);
-	else res.status(404).json({ error: "Chnnel not found" });
+	else res.status(404).json({ error: "Channel not found" });
 });
 
 router.delete("/:id/channels/:channelId", async (req, res) => {
@@ -40,6 +46,26 @@ router.delete("/:id/channels/:channelId", async (req, res) => {
 	await db.discord.channels.delete(req.params.channelId);
 
 	res.status(204).end();
+});
+
+router.get("/:id/members", async (req, res) => {
+	const db = req.app.locals.db;
+
+	if(req.query.name && req.query.discriminator) {
+		const members = await db.discord.members.getByGuildIdNameAndDiscrim(req.params.id, req.params.name);
+
+		res.status(200).json(members);
+	} else if(req.query.discriminator) {
+		const members = await db.discord.members.getByGuildIdAndDiscrim(req.params.id, req.params.discriminator);
+
+		res.status(200).json(members);
+	} else if(req.query.name) {
+		const members = await db.discord.members.getByGuildIdAndName(req.params.id, req.params.name);
+
+		res.status(200).json(members);
+	} else {
+		res.status(400).json({ error: "No search query" });
+	}
 });
 
 router.get("/:id/members/:userId", async (req, res) => {
@@ -62,9 +88,15 @@ router.delete("/:id/members/:userId", async (req, res) => {
 router.get("/:id/roles", async (req, res) => {
 	const db = req.app.locals.db;
 
-	const roles = await db.discord.roles.getByGuildId(req.params.id);
+	if(req.query.name) {
+		const roles = await db.discord.roles.getByGuildIdAndName(req.params.id, req.query.name);
 
-	res.status(200).json(roles);
+		res.status(200).json(roles);
+	} else {
+		const roles = await db.discord.roles.getByGuildId(req.params.id);
+
+		res.status(200).json(roles);
+	}
 });
 
 router.get("/:id/roles/:roleId", async (req, res) => {

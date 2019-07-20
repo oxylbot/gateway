@@ -1,6 +1,7 @@
 module.exports = Role => ({
-	cache: require("./cache.js")(Role),
-	delete: require("./delete.js")(Role),
-	getById: require("./getById.js")(Role),
-	getByGuildId: require("./getByGuildId")(Role)
+	cache: require("./cache")(Role),
+	delete: require("./delete")(Role),
+	getById: require("./getById")(Role),
+	getByGuildId: require("./getByGuildId")(Role),
+	getByGuildIdAndName: require("./getByGuildIdAndName")(Role)
 });

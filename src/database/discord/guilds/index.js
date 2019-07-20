@@ -1,5 +1,5 @@
 module.exports = Guild => ({
-	cache: require("./delete.js")(Guild),
-	getById: require("./getById.js")(Guild),
-	delete: require("./delete.js")(Guild)
+	cache: require("./delete")(Guild),
+	getById: require("./getById")(Guild),
+	delete: require("./delete")(Guild)
 });
