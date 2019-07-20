@@ -1,8 +1,8 @@
-module.exports = async (database, type, data) => {
+module.exports = async (db, type, data) => {
 	switch(type) {
 		case "Member": {
-			await module.exports(database, "User", data.user);
-			await database.models.members.cache({
+			await module.exports(db, "User", data.user);
+			await db.discord.members.cache({
 				id: data.user.id,
 				guildId: data.guildId,
 				nickname: data.nickname,
@@ -14,7 +14,7 @@ module.exports = async (database, type, data) => {
 		}
 
 		case "Role": {
-			await database.models.roles.cache({
+			await db.discord.roles.cache({
 				id: data.id,
 				guildId: data.guildId,
 				color: data.color,
@@ -26,8 +26,7 @@ module.exports = async (database, type, data) => {
 		}
 
 		case "User": {
-			console.log("Caching user!");
-			await database.models.users.cache({
+			await db.discord.users.cache({
 				id: data.id,
 				username: data.username,
 				discriminator: data.discriminator,
@@ -39,7 +38,7 @@ module.exports = async (database, type, data) => {
 		}
 
 		case "Channel": {
-			await database.models.channels.cache({
+			await db.discord.channels.cache({
 				id: data.id,
 				guildId: data.guildId,
 				name: data.name,
@@ -60,7 +59,7 @@ module.exports = async (database, type, data) => {
 		}
 
 		case "Guild": {
-			await database.models.guilds.cache({
+			await db.discord.guilds.cache({
 				id: data.id,
 				name: data.name,
 				icon: data.icon,
@@ -69,18 +68,18 @@ module.exports = async (database, type, data) => {
 				memberCount: data.memberCount
 			});
 
-			if(data.roles) await Promise.all(data.roles.map(role => module.exports(database, "Role", role)));
-			if(data.members) await Promise.all(data.members.map(member => module.exports(database, "Member", member)));
-			if(data.channels) await Promise.all(data.channels.map(channel => module.exports(database, "Channel", channel)));
+			if(data.roles) await Promise.all(data.roles.map(role => module.exports(db, "Role", role)));
+			if(data.members) await Promise.all(data.members.map(member => module.exports(db, "Member", member)));
+			if(data.channels) await Promise.all(data.channels.map(channel => module.exports(db, "Channel", channel)));
 			if(data.voiceStates) {
-				await Promise.all(data.voiceStates.map(state => module.exports(database, "VoiceState", state)));
+				await Promise.all(data.voiceStates.map(state => module.exports(db, "VoiceState", state)));
 			}
 
 			break;
 		}
 
 		case "VoiceState": {
-			await database.models.voiceStates.cache({
+			await db.discord.voiceStates.cache({
 				guildId: data.guildId,
 				userId: data.userId,
 				channelId: data.channelId,
