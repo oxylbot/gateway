@@ -4,15 +4,15 @@ router.get("/", async (req, res) => {
 	const db = req.app.locals.db;
 
 	if(req.query.name && req.query.discriminator) {
-		const users = await db.discord.users.getByNameAndDiscrim(req.params.name);
+		const users = await db.discord.users.getByNameAndDiscrim(req.query.name);
 
 		res.status(200).json(users);
 	} else if(req.query.discriminator) {
-		const users = await db.discord.users.getByDiscrim(req.params.discriminator);
+		const users = await db.discord.users.getByDiscrim(req.query.discriminator);
 
 		res.status(200).json(users);
 	} else if(req.query.name) {
-		const users = await db.discord.users.getByName(req.params.name);
+		const users = await db.discord.users.getByName(req.query.name);
 
 		res.status(200).json(users);
 	} else {

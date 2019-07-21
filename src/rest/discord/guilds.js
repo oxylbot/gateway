@@ -52,15 +52,15 @@ router.get("/:id/members", async (req, res) => {
 	const db = req.app.locals.db;
 
 	if(req.query.name && req.query.discriminator) {
-		const members = await db.discord.members.getByGuildIdNameAndDiscrim(req.params.id, req.params.name);
+		const members = await db.discord.members.getByGuildIdNameAndDiscrim(req.params.id, req.query.name);
 
 		res.status(200).json(members);
 	} else if(req.query.discriminator) {
-		const members = await db.discord.members.getByGuildIdAndDiscrim(req.params.id, req.params.discriminator);
+		const members = await db.discord.members.getByGuildIdAndDiscrim(req.params.id, req.query.discriminator);
 
 		res.status(200).json(members);
 	} else if(req.query.name) {
-		const members = await db.discord.members.getByGuildIdAndName(req.params.id, req.params.name);
+		const members = await db.discord.members.getByGuildIdAndName(req.params.id, req.query.name);
 
 		res.status(200).json(members);
 	} else {
