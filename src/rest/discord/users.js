@@ -4,7 +4,7 @@ router.get("/", async (req, res) => {
 	const db = req.app.locals.db;
 
 	if(req.query.name && req.query.discriminator) {
-		const users = await db.discord.users.getByNameAndDiscrim(req.query.name);
+		const users = await db.discord.users.getByNameAndDiscrim(req.query.name, req.query.discriminator);
 
 		res.status(200).json(users);
 	} else if(req.query.discriminator) {
