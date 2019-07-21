@@ -5,7 +5,7 @@ module.exports = Channel => async (guildId, name) =>
 		where: {
 			guildId,
 			name: {
-				[Op.iLike]: name.replace(/%/g, "\\%").replace(/_/g, "\\_").replace(/\\/g, "\\\\")
+				[Op.iLike]: `%${name.replace(/%/g, "\\%").replace(/_/g, "\\_").replace(/\\/g, "\\\\")}%`
 			}
 		}
 	});

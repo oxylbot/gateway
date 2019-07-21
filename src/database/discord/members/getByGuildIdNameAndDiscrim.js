@@ -5,7 +5,7 @@ module.exports = Member => async (guildId, username, discrim) =>
 		where: {
 			guildId,
 			username: {
-				[Op.iLike]: username.replace(/%/g, "\\%").replace(/_/g, "\\_").replace(/\\/g, "\\\\")
+				[Op.iLike]: `%${username.replace(/%/g, "\\%").replace(/_/g, "\\_").replace(/\\/g, "\\\\")}%`
 			},
 			discriminator: discrim
 		}
