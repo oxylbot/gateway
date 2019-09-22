@@ -1,4 +1,5 @@
-const router = module.exports = new (require("express").Router)();
+const express = require("express");
+const router = express.Router();
 
 router.get("/:id", async (req, res) => {
 	const db = req.app.locals.db;
@@ -140,3 +141,5 @@ router.delete("/:id/voicestates/:userId", async (req, res) => {
 
 	res.status(204).end();
 });
+
+module.exports = () => router;

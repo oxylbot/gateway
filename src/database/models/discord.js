@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 
-module.exports = db => {
-	const Guild = db.define("guild", {
+module.exports = {
+	Guild: [{
 		id: {
 			type: Sequelize.STRING,
 			primaryKey: true,
@@ -36,9 +36,8 @@ module.exports = db => {
 	}, {
 		timestamps: false,
 		tableName: "guilds"
-	});
-
-	const User = db.define("user", {
+	}],
+	User: [{
 		id: {
 			type: Sequelize.STRING,
 			primaryKey: true,
@@ -74,9 +73,8 @@ module.exports = db => {
 		}, {
 			fields: ["discriminator"]
 		}]
-	});
-
-	const Channel = db.define("channel", {
+	}],
+	Channel: [{
 		id: {
 			primaryKey: true,
 			type: Sequelize.STRING,
@@ -132,9 +130,8 @@ module.exports = db => {
 		indexes: [{
 			fields: ["guild_id"]
 		}]
-	});
-
-	const Member = db.define("member", {
+	}],
+	Member: [{
 		id: {
 			type: Sequelize.STRING,
 			primaryKey: true,
@@ -171,9 +168,8 @@ module.exports = db => {
 		indexes: [{
 			fields: ["nickname"]
 		}]
-	});
-
-	const Role = db.define("roles", {
+	}],
+	Role: [{
 		id: {
 			type: Sequelize.STRING,
 			primaryKey: true,
@@ -206,9 +202,8 @@ module.exports = db => {
 		indexes: [{
 			fields: ["guild_id"]
 		}]
-	});
-
-	const VoiceState = db.define("voicestates", {
+	}],
+	VoiceState: [{
 		guildId: {
 			type: Sequelize.STRING,
 			primaryKey: true,
@@ -256,14 +251,5 @@ module.exports = db => {
 		indexes: [{
 			fields: ["channel_id"]
 		}]
-	});
-
-	return {
-		Channel,
-		Guild,
-		Member,
-		Role,
-		User,
-		VoiceState
-	};
+	}]
 };

@@ -1,4 +1,5 @@
-const router = module.exports = new (require("express").Router)();
+const express = require("express");
+const router = express.Router();
 
 router.get("/", async (req, res) => {
 	const db = req.app.locals.db;
@@ -30,3 +31,5 @@ router.get("/:id", async (req, res) => {
 	if(user) res.status(200).json(user);
 	else res.status(404).json({ error: "User not found" });
 });
+
+module.exports = () => router;

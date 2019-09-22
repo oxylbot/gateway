@@ -1,4 +1,10 @@
-const router = module.exports = new (require("express").Router)();
+const express = require("express");
+const router = express.Router();
 
-router.use("/guilds", require("./guilds"));
-router.use("/users", require("./users"));
+const guilds = require("./guilds");
+const users = require("./users");
+
+router.use("/guilds", guilds());
+router.use("/users", users());
+
+module.exports = () => router;
