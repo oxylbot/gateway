@@ -25,7 +25,7 @@ router.use("/:guildId(\d)/prefix", prefix());
 router.use("/:guildId(\d)/reddit", reddit());
 router.use("/:guildId(\d)/roleme", roleme());
 router.use("/:guildId(\d)/twitch", twitch());
-router.use("/:guildId(\d)/userlog", userlog());
+router.use("/:guildId(\d)/user-log", userlog());
 
 router.get("/:id(\d)", async (req, res) => {
 	const db = req.locals.db;

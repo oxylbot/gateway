@@ -177,7 +177,7 @@ module.exports = {
 			field: "guild_id"
 		},
 		prefix: {
-			type: Sequelize.String,
+			type: Sequelize.STRING(20),
 			allowNull: true,
 			field: "prefix"
 		},
