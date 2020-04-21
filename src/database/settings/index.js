@@ -9,6 +9,7 @@ module.exports = models => ({
 	prefix: require("./prefix/index")(models.Prefix),
 	reddit: require("./reddit/index")(models.Reddit),
 	roleme: require("./roleme/index")(models.RoleMe),
+	suggestions: require("./suggestions/index")(models.Suggestions),
 	twitch: require("./twitch/index")(models.Twitch),
 	userlog: require("./userlog/index")(models.UserLog)
 });

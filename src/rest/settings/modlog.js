@@ -8,7 +8,7 @@ router.get("/", async (req, res) => {
 	res.status(200).json(modlogOptions);
 });
 
-router.patch("/", async (req, res) => {
+router.put("/", async (req, res) => {
 	const db = req.app.locals.db;
 
 	const modlogOptions = await db.settings.modlog.update(req.params.guildId, req.body);

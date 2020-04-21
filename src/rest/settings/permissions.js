@@ -26,7 +26,7 @@ router.get("/:id", async (req, res) => {
 	else res.status(404).json({ error: "Permission not found" });
 });
 
-router.patch("/:id", async (req, res) => {
+router.put("/:id", async (req, res) => {
 	const db = req.app.locals.db;
 
 	const permission = await db.settings.permissions.update(req.params.id, req.body);

@@ -161,6 +161,14 @@ module.exports = {
 			}),
 			allowNull: false,
 			field: "disabled_commands"
+		},
+		enabledCommands: {
+			type: Sequelize.ARRAY({
+				type: Sequelize.STRING,
+				allowNull: false
+			}),
+			allowNull: false,
+			field: "enabled_commands"
 		}
 	}, {
 		timestamps: false,
@@ -290,6 +298,31 @@ module.exports = {
 	}, {
 		timestamps: false,
 		tableName: "settings_role_me",
+		indexes: [{
+			fields: ["guild_id"]
+		}]
+	}],
+	Suggestions: [{
+		guildId: {
+			primaryKey: true,
+			type: Sequelize.STRING,
+			allowNull: false,
+			field: "guild_id"
+		},
+		enabled: {
+			type: Sequelize.BOOLEAN,
+			defaultValue: true,
+			allowNull: false,
+			field: "enabled"
+		},
+		channelId: {
+			type: Sequelize.STRING,
+			allowNull: true,
+			field: "channel_id"
+		}
+	}, {
+		timestamps: false,
+		tableName: "settings_suggestions",
 		indexes: [{
 			fields: ["guild_id"]
 		}]

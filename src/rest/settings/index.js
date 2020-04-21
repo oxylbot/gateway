@@ -11,6 +11,7 @@ const permissions = require("./permissions");
 const prefix = require("./prefix");
 const reddit = require("./reddit");
 const roleme = require("./roleme");
+const suggestions = require("./suggestions");
 const twitch = require("./twitch");
 const userlog = require("./userlog");
 
@@ -24,6 +25,7 @@ router.use("/:guildId(\d)/permissions", permissions());
 router.use("/:guildId(\d)/prefix", prefix());
 router.use("/:guildId(\d)/reddit", reddit());
 router.use("/:guildId(\d)/roleme", roleme());
+router.use("/:guildId(\d)/suggestions", suggestions());
 router.use("/:guildId(\d)/twitch", twitch());
 router.use("/:guildId(\d)/user-log", userlog());
 
