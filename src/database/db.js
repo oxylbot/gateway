@@ -10,7 +10,6 @@ class Database {
 	async init({ password, user, database, host, port }) {
 		this.sequelize = new Sequelize(database, user, password, {
 			dialect: "postgres",
-			operatorsAliases: false,
 			host: host,
 			port: port
 		});
