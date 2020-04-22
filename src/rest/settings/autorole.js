@@ -14,3 +14,5 @@ router.put("/", async (req, res) => {
 	const roles = await db.settings.autorole.update(req.params.guildId, req.body.roles);
 	res.status(200).json(roles);
 });
+
+module.exports = () => router;

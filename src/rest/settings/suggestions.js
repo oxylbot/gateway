@@ -14,3 +14,5 @@ router.put("/", async (req, res) => {
 	const suggestionSettings = await db.settings.suggestions.update(req.params.guildId, req.body);
 	res.status(200).json(suggestionSettings);
 });
+
+module.exports = () => router;

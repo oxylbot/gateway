@@ -14,3 +14,5 @@ router.put("/", async (req, res) => {
 	const channelOptions = await db.settings.channels.update(req.params.guildId, req.body);
 	res.status(200).json(channelOptions);
 });
+
+module.exports = () => router;

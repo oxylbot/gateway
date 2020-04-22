@@ -14,3 +14,5 @@ router.put("/", async (req, res) => {
 	const musicSettings = await db.settings.music.update(req.params.guildId, req.body);
 	res.status(200).json(musicSettings);
 });
+
+module.exports = () => router;
