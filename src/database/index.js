@@ -12,7 +12,6 @@ module.exports = async () => {
 	});
 
 	return {
-		discord: require("./discord/index")(database.models.discord),
 		settings: require("./settings/index")(database.models.settings)
 	};
 };

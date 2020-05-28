@@ -1,4 +1,3 @@
-const discordModels = require("./discord");
 const settingsModels = require("./settings");
 
 function registerModels(modelList, db) {
@@ -10,6 +9,5 @@ function registerModels(modelList, db) {
 }
 
 module.exports = db => ({
-	discord: registerModels(discordModels, db),
 	settings: registerModels(settingsModels, db)
 });

@@ -32,7 +32,8 @@ router.use("/:guildId(\d)/user-log", userlog());
 router.get("/:id(\d)", async (req, res) => {
 	const db = req.locals.db;
 
-	const guild = await db.discord.guilds.getById(req.params.id);
+	// TODO
+	const guild = null;
 	if(!guild) return res.status(404).json({ error: "Guild not found" });
 
 	const settingQueries = {
