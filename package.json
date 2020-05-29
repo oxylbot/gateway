@@ -1,6 +1,6 @@
 {
   "name": "oxyl-gateway",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "API Gateway for Oxyl microservices",
   "main": "src/index.js",
   "scripts": {
@@ -33,6 +33,6 @@
   },
   "devDependencies": {
     "eslint": "7.1.0",
-    "eslint-config-recommended": "4.0.0"
+    "eslint-config-recommended": "4.1.0"
   }
 }
