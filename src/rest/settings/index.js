@@ -13,7 +13,6 @@ const reddit = require("./reddit");
 const roleme = require("./roleme");
 const suggestions = require("./suggestions");
 const twitch = require("./twitch");
-const userlog = require("./userlog");
 
 router.use("/:guildId(\d)/autorole", autorole());
 router.use("/:guildId(\d)/autorole/bots", autorolebot());
@@ -27,7 +26,6 @@ router.use("/:guildId(\d)/reddit", reddit());
 router.use("/:guildId(\d)/roleme", roleme());
 router.use("/:guildId(\d)/suggestions", suggestions());
 router.use("/:guildId(\d)/twitch", twitch());
-router.use("/:guildId(\d)/user-log", userlog());
 
 router.get("/:id(\d)", async (req, res) => {
 	const db = req.locals.db;
@@ -47,8 +45,7 @@ router.get("/:id(\d)", async (req, res) => {
 		prefix: db.settings.prefix.get(req.params.id),
 		reddit: db.settings.reddit.getByGuildId(req.params.id),
 		roleme: db.settings.roleme.get(req.params.id),
-		twitch: db.settings.twitch.getByGuildId(req.params.id),
-		userlog: db.settings.userlog.get(req.params.id)
+		twitch: db.settings.twitch.getByGuildId(req.params.id)
 	};
 
 	guild.settings = await Promise.all(Object.values(settingQueries)).reduce((settings, value, i) => {

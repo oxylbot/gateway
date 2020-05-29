@@ -10,6 +10,5 @@ module.exports = models => ({
 	reddit: require("./reddit/index")(models.Reddit),
 	roleme: require("./roleme/index")(models.RoleMe),
 	suggestions: require("./suggestions/index")(models.Suggestions),
-	twitch: require("./twitch/index")(models.Twitch),
-	userlog: require("./userlog/index")(models.UserLog)
+	twitch: require("./twitch/index")(models.Twitch)
 });

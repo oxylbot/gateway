@@ -355,40 +355,5 @@ module.exports = {
 		indexes: [{
 			fields: ["guild_id"]
 		}]
-	}],
-	UserLog: [{
-		guildId: {
-			type: Sequelize.STRING,
-			primaryKey: true,
-			allowNull: false,
-			field: "guild_id"
-		},
-		enabled: {
-			type: Sequelize.BOOLEAN,
-			defaultValue: false,
-			allowNull: false,
-			field: "enabled"
-		},
-		channelId: {
-			type: Sequelize.STRING,
-			allowNull: true,
-			field: "channel_id"
-		},
-		joinMessage: {
-			type: Sequelize.STRING,
-			allowNull: true,
-			field: "join_message"
-		},
-		leaveMessage: {
-			type: Sequelize.STRING,
-			allowNull: true,
-			field: "leave_message"
-		}
-	}, {
-		timestamps: false,
-		tableName: "settings_user_log",
-		indexes: [{
-			fields: ["guild_id"]
-		}]
 	}]
 };
