@@ -1,5 +1,4 @@
 const express = require("express");
-const discord = require("./discord/index");
 const settings = require("./settings/index");
 
 const app = express();
@@ -11,7 +10,6 @@ app.set("env", process.env.NODE_ENV);
 
 
 app.use(express.json());
-app.use("/discord", discord());
 app.use("/settings", settings());
 
 module.exports = async db => {
