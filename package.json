@@ -28,7 +28,7 @@
     "pg": "^8.2.1",
     "pg-hstore": "^2.3.3",
     "protobufjs": "^6.9.0",
-    "sequelize": "^5.21.12"
+    "sequelize": "^5.21.13"
   },
   "devDependencies": {
     "eslint": "7.2.0",
