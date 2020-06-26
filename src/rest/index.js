@@ -16,8 +16,9 @@ app.use(expressWinston.logger({ winstonInstance: logger }));
 app.use("/settings", settings());
 app.use(expressWinston.errorLogger({ winstonInstance: logger }));
 
-module.exports = async db => {
+module.exports = async (db, bucket) => {
 	app.locals.db = db;
+	app.locals.bucket = bucket;
 };
 
 app.all("*", (req, res) => {

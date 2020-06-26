@@ -30,9 +30,14 @@ router.use("/:guildId(\d)/twitch", twitch());
 router.get("/:id(\d)", async (req, res) => {
 	const db = req.locals.db;
 
-	// TODO
-	const guild = null;
-	if(!guild) return res.status(404).json({ error: "Guild not found" });
+	let guild;
+	try {
+		guild = await req.locals.bucket.request("getGuild", {
+			guildId: req.params.id
+		});
+	} catch(err) {
+		return res.status(404).json({ error: "Guild not found" });
+	}
 
 	const settingQueries = {
 		autorole: db.settings.autorole.get(req.params.id),
