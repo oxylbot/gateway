@@ -14,7 +14,7 @@ class Database {
 			dialect: "postgres",
 			host: host,
 			port: port,
-			logger: msg => logger.verbose(msg)
+			logging: msg => logger.verbose(msg)
 		});
 
 		await this.sequelize.authenticate();
