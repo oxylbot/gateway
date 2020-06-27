@@ -14,20 +14,20 @@ const roleme = require("./roleme");
 const suggestions = require("./suggestions");
 const twitch = require("./twitch");
 
-router.use("/:guildId(\d)/autorole", autorole());
-router.use("/:guildId(\d)/autorole/bots", autorolebot());
-router.use("/:guildId(\d)/censors", censors());
-router.use("/:guildId(\d)/channels", channels());
-router.use("/:guildId(\d)/mod-log", modlog());
-router.use("/:guildId(\d)/music", music());
-router.use("/:guildId(\d)/permissions", permissions());
-router.use("/:guildId(\d)/prefix", prefix());
-router.use("/:guildId(\d)/reddit", reddit());
-router.use("/:guildId(\d)/roleme", roleme());
-router.use("/:guildId(\d)/suggestions", suggestions());
-router.use("/:guildId(\d)/twitch", twitch());
+router.use("/:guildId(\d+)/autorole", autorole());
+router.use("/:guildId(\d+)/autorole/bots", autorolebot());
+router.use("/:guildId(\d+)/censors", censors());
+router.use("/:guildId(\d+)/channels", channels());
+router.use("/:guildId(\d+)/mod-log", modlog());
+router.use("/:guildId(\d+)/music", music());
+router.use("/:guildId(\d+)/permissions", permissions());
+router.use("/:guildId(\d+)/prefix", prefix());
+router.use("/:guildId(\d+)/reddit", reddit());
+router.use("/:guildId(\d+)/roleme", roleme());
+router.use("/:guildId(\d+)/suggestions", suggestions());
+router.use("/:guildId(\d+)/twitch", twitch());
 
-router.get("/:id(\d)", async (req, res) => {
+router.get("/:id(\d+)", async (req, res) => {
 	const db = req.locals.db;
 
 	let guild;
