@@ -1,4 +1,5 @@
 const express = require("express");
+const logger = require("../../logger");
 const router = express.Router();
 
 const autorole = require("./autorole");
@@ -39,7 +40,7 @@ router.get("/:id(\\d+)", async (req, res) => {
 		return res.status(404).json({ error: "Guild not found" });
 	}
 
-	const settingQueries = {
+	const settings = {
 		autorole: db.settings.autorole.get(req.params.id),
 		autorolebot: db.settings.autorolebot.get(req.params.id),
 		censors: db.settings.censors.getByGuildId(req.params.id),
@@ -53,8 +54,10 @@ router.get("/:id(\\d+)", async (req, res) => {
 		twitch: db.settings.twitch.getByGuildId(req.params.id)
 	};
 
-	await Promise.all(Object.values(settingQueries));
-	guild.settings = settingQueries;
+	await Promise.all(Object.values(settings));
+	logger.debug("Guild settings retrieved", { settings });
+	guild.settings = settings;
+	logger.debug("Guild object completed", { guild });
 
 	return res.status(200).json(guild);
 });
