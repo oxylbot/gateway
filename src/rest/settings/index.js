@@ -28,11 +28,11 @@ router.use("/:guildId(\\d+)/suggestions", suggestions());
 router.use("/:guildId(\\d+)/twitch", twitch());
 
 router.get("/:id(\\d+)", async (req, res) => {
-	const db = req.locals.db;
+	const db = req.app.locals.db;
 
 	let guild;
 	try {
-		guild = await req.locals.bucket.request("getGuild", {
+		guild = await req.app.locals.bucket.request("getGuild", {
 			guildId: req.params.id
 		});
 	} catch(err) {
