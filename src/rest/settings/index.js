@@ -56,7 +56,7 @@ router.get("/:id(\\d+)", async (req, res) => {
 	await Promise.all(Object.values(settingQueries));
 	guild.settings = settingQueries;
 
-	return res.status(200).json({ guild });
+	return res.status(200).json(guild);
 });
 
 module.exports = () => router;
