@@ -53,11 +53,8 @@ router.get("/:id(\\d+)", async (req, res) => {
 		twitch: db.settings.twitch.getByGuildId(req.params.id)
 	};
 
-	guild.settings = await Promise.all(Object.values(settingQueries)).reduce((settings, value, i) => {
-		settings[Object.keys(settingQueries)[i]] = value;
-
-		return settings;
-	}, {});
+	await Promise.all(Object.values(settingQueries));
+	guild.settings = settingQueries;
 
 	return res.status(200).json({ guild });
 });
