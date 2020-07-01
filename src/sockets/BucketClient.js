@@ -50,7 +50,14 @@ class BucketSocket {
 	}
 
 	async request(type, data = {}) {
-		return await this.service[type](data);
+		const response = await this.service[type](data);
+
+		return response.toJSON({
+			longs: Number,
+			defaults: true,
+			arrays: true,
+			objects: true
+		});
 	}
 
 	async messageHandler() {
