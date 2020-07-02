@@ -32,7 +32,7 @@ router.patch("/:id", async (req, res) => {
 	const feed = await db.settings.twitch.update(req.params.id, req.body);
 
 	if(feed) res.status(200).json(feed);
-	else res.status(404).json({ error: "Twitch feed not found" });
+	else res.status().json({ error: "Twitch feed not found" });
 });
 
 router.delete("/:id", async (req, res) => {
