@@ -40,6 +40,12 @@ router.get("/:id(\\d+)", async (req, res) => {
 		return res.status(404).json({ error: "Guild not found" });
 	}
 
+	const channelResp = await req.app.locals.bucket.request("getGuildChannels", {
+		guildId: req.params.id
+	});
+
+	guild.channels = channelResp.channels;
+
 	const settings = {
 		autorole: db.settings.autorole.get(req.params.id),
 		autorolebot: db.settings.autorolebot.get(req.params.id),
