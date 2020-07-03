@@ -1,5 +1,7 @@
-module.exports = Channels => async (guildId, options) =>
-	await Channels.upsert(Object.assign({
-		guildId
-	}), options);
+const logger = require("../../../logger");
+module.exports = Channels => async (guildId, options) => {
+	options.guildId = guildId;
+	logger.debug("Upserting channel", { options });
 
+	return await Channels.upsert(options);
+};
