@@ -1,5 +1,6 @@
-module.exports = ModLog => async (guildId, options) =>
-	await ModLog.upsert(Object.assign({
-		guildId
-	}), options);
+module.exports = ModLog => async (guildId, options) => {
+	options.guildId = guildId;
+
+	return await ModLog.upsert(options);
+};
 

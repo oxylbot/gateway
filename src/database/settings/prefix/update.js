@@ -1,5 +1,6 @@
-module.exports = Prefix => async (guildId, options) =>
-	await Prefix.upsert(Object.assign({
-		guildId
-	}), options);
+module.exports = Prefix => async (guildId, options) => {
+	options.guildId = guildId;
+
+	return await Prefix.upsert(options);
+};
 

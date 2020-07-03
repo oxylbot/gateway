@@ -1,5 +1,6 @@
-module.exports = Music => async (guildId, options) =>
-	await Music.upsert(Object.assign({
-		guildId
-	}), options);
+module.exports = Music => async (guildId, options) => {
+	options.guildId = guildId;
+
+	return await Music.upsert(options);
+};
 
