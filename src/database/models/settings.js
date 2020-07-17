@@ -118,11 +118,11 @@ module.exports = {
 			allowNull: false,
 			field: "guild_id"
 		},
-		enabled: {
+		nowPlayingMessages: {
 			type: Sequelize.BOOLEAN,
 			defaultValue: true,
 			allowNull: false,
-			field: "enabled"
+			field: "now_playing_messages"
 		},
 		voteSkip: {
 			type: Sequelize.BOOLEAN,
