@@ -23,6 +23,11 @@ module.exports = {
 			allowNull: false,
 			field: "description"
 		},
+		punishment: {
+			type: Sequelize.STRING(64),
+			allowNull: false,
+			field: "punishment"
+		},
 		duration: {
 			type: Sequelize.INTEGER,
 			allowNull: true,
