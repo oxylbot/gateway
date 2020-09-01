@@ -29,7 +29,7 @@
     "pg": "^8.3.3",
     "pg-hstore": "^2.3.3",
     "protobufjs": "^6.10.1",
-    "sequelize": "^6.3.4",
+    "sequelize": "^6.3.5",
     "winston": "^3.3.3",
     "zeromq": "^6.0.0-beta.6"
   },
