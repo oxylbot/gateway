@@ -25,7 +25,7 @@
   "homepage": "https://github.com/oxylbot/gateway#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "express-winston": "^4.0.5",
+    "express-winston": "^4.2.0",
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
     "protobufjs": "^6.10.2",
